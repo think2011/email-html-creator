@@ -1,0 +1,26 @@
+{
+  "name": "email-html-creator",
+  "version": "1.0.0",
+  "description": "一个编写邮件HTML的工作环境，可以以外链style的方式编写HTML",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/think2011/email-html-creator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/think2011/email-html-creator/issues"
+  },
+  "homepage": "https://github.com/think2011/email-html-creator#readme",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-dom": "^0.7.2",
+    "gulp-inline-css": "^3.0.0",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-minify-html": "^1.0.4"
+  }
+}
