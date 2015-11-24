@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh-cn"><head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>模板开发环境</title>
     
 </head>
 <body>
@@ -20,19 +20,9 @@
     </div>
 </script>
 
-<script src="../node_modules/jquery/dist/jquery.js"></script>
-<script src="../node_modules/handlebars/dist/handlebars.js"></script>
-<script>
-    var source = $("#entry-template").html();
-    var template = Handlebars.compile(source);
+<script src="/node_modules/jquery/dist/jquery.js"></script>
+<script src="/node_modules/handlebars/dist/handlebars.js"></script>
 
-    $.getJSON('/src/mock.json').then(function (rst) {
-        rst.items.sort(function () {
-            return 0.5 - Math.random();
-        });
-
-        $('body').append(template(rst));
-    });
-</script>
+<script src="/src/index.js"></script>
 
 </body></html>
