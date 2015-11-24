@@ -27,7 +27,8 @@ gulp.task('dev', function () {
     return gulp.src(files.html)
         .pipe(plugins.dom(function () {
             // 抽离出HTML进行inLineCss
-            var tplContainer = this.createElement('div');
+            // 使用textarea能防止带有嵌入handlebar的table结构被破坏
+            var tplContainer = this.createElement('textarea');
 
             tplContainer.id = 'tpl-container';
             tplContainer.innerHTML = this.querySelector('#entry-template').innerHTML;
@@ -40,7 +41,7 @@ gulp.task('dev', function () {
         .pipe(plugins.dom(function () {
             var tplContainer = this.querySelector('#tpl-container');
 
-            this.querySelector('#entry-template').innerHTML = tplContainer.innerHTML;
+            this.querySelector('#entry-template').innerHTML = tplContainer.value;
             tplContainer.parentNode.removeChild(tplContainer);
 
             return this;
