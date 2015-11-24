@@ -1,16 +1,17 @@
 var gulp        = require('gulp'),
     path        = require('path'),
+    fs          = require('fs'),
+    jsdom       = require("jsdom"),
+    through     = require('through2'),
+    Entities    = require('html-entities').AllHtmlEntities,
     plugins     = require('gulp-load-plugins')(),
     browserSync = require('browser-sync').create();
 
 var paths = {
-    src : './src',
-    dist: './dist'
-};
-
-var files = {
-    src : `${paths.src}/*.*`,
-    html: `${paths.src}/*.html`
+    src    : './src',
+    dist   : './dist',
+    sources: './sources',
+    build  : './build'
 };
 
 gulp.task('server', function () {
@@ -23,31 +24,49 @@ gulp.task('server', function () {
     });
 });
 
-gulp.task('dev', function () {
-    return gulp.src(files.html)
-        .pipe(plugins.dom(function () {
-            // 抽离出HTML进行inLineCss
-            // 使用textarea能防止带有嵌入handlebar的table结构被破坏
-            var tplContainer = this.createElement('textarea');
+gulp.task('dev', ['dev:sass'], function () {
+    gulp.src(`${paths.src}/*.html`)
+        // 包裹
+        .pipe(plugins.fileWrapper(`${paths.sources}/index.html`))
 
-            tplContainer.id = 'tpl-container';
-            tplContainer.innerHTML = this.querySelector('#entry-template').innerHTML;
-            this.querySelector('body').appendChild(tplContainer);
+        // 插入样式
+        .pipe(insertLink())
 
-            return this;
-        }))
+        // decodeHTML
+        .pipe(decodeHtml())
+
+        // 样式转内联
         .pipe(plugins.inlineCss())
-        // 恢复
-        .pipe(plugins.dom(function () {
-            var tplContainer = this.querySelector('#tpl-container');
 
-            this.querySelector('#entry-template').innerHTML = tplContainer.value;
-            tplContainer.parentNode.removeChild(tplContainer);
+        // 收工
+        .pipe(plugins.dom(function () {
+            var textarea      = this.querySelector('textarea'),
+                entryTemplate = this.querySelector('#entry-template');
+
+            entryTemplate.innerHTML = textarea.value;
+            textarea.parentNode.removeChild(textarea);
 
             return this;
         }))
-        .pipe(gulp.dest(paths.dist));
+
+        .pipe(gulp.dest(paths.dist))
+
+        .on('end', function () {
+            gulp.start('dev:clean')
+        });
 });
+
+gulp.task('dev:sass', function () {
+    return gulp.src(`${paths.src}/*.scss`)
+        .pipe(plugins.sass().on('error', plugins.sass.logError))
+        .pipe(gulp.dest(paths.src));
+});
+
+gulp.task('dev:clean', function () {
+    return gulp.src(`${paths.src}/*.css`)
+        .pipe(plugins.clean({force: true}));
+});
+
 
 gulp.task('build', ['dev'], function () {
     return gulp.src(`${paths.dist}/*.html`)
@@ -55,11 +74,47 @@ gulp.task('build', ['dev'], function () {
         .pipe(plugins.dom(function () {
             return this.querySelector('#entry-template').innerHTML
         }))
-        .pipe(gulp.dest(paths.dist));
+        .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('default', ['dev', 'server'], function () {
-    plugins.watch(files.src, () => {
+    plugins.watch(`${paths.src}/*.*`, () => {
         gulp.start(['dev']);
-    });
+    })
 });
+
+
+function insertLink () {
+    return through.obj(function (file, enc, cb) {
+        var fileName = file.relative.split('.')[0],
+            content  = file.contents.toString();
+
+        jsdom.env(content, function (err, window) {
+                var document = window.document,
+                    link     = document.createElement('link');
+
+                link.rel  = 'stylesheet';
+                link.href = `${fileName}.css`;
+                document.querySelector('head').appendChild(link);
+
+                file.contents = new Buffer(jsdom.serializeDocument(window.document));
+
+                cb(null, file);
+
+                window.close();
+            }
+        );
+
+    })
+}
+
+function decodeHtml () {
+    return through.obj(function (file, enc, cb) {
+        var entities = new Entities(),
+            content  = file.contents.toString();
+
+        file.contents = new Buffer(entities.decode(content));
+        cb(null, file);
+    })
+
+}

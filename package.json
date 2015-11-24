@@ -19,12 +19,17 @@
   "dependencies": {
     "browser-sync": "^2.10.0",
     "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
     "gulp-dom": "^0.7.2",
+    "gulp-file-wrapper": "0.0.1",
     "gulp-inline-css": "^3.0.0",
     "gulp-load-plugins": "^1.1.0",
     "gulp-minify-html": "^1.0.4",
+    "gulp-sass": "^2.1.0",
     "gulp-watch": "^4.3.5",
     "handlebars": "^4.0.5",
-    "jquery": "^2.1.4"
+    "html-entities": "^1.2.0",
+    "jquery": "^2.1.4",
+    "through2": "^2.0.0"
   }
 }
