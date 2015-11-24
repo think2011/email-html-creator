@@ -17,10 +17,12 @@
   },
   "homepage": "https://github.com/think2011/email-html-creator#readme",
   "dependencies": {
+    "browser-sync": "^2.10.0",
     "gulp": "^3.9.0",
     "gulp-dom": "^0.7.2",
     "gulp-inline-css": "^3.0.0",
     "gulp-load-plugins": "^1.1.0",
-    "gulp-minify-html": "^1.0.4"
+    "gulp-minify-html": "^1.0.4",
+    "gulp-watch": "^4.3.5"
   }
 }
