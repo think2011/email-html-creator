@@ -6,6 +6,24 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-123112
+<script id="entry-template" type="text/x-handlebars-template">
+    {{#each items}}
+    {{#each this}}
+    {{picUrl}}
+    {{/each}}
+    {{/each}}
+</script>
+
+
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script src="../node_modules/handlebars/dist/handlebars.js"></script>
+<script>
+    var source = $("#entry-template").html();
+    var template = Handlebars.compile(source);
+
+    $.getJSON('/src/mock.json').then(function (rst) {
+        $('body').append(template(rst));
+    });
+</script>
 </body>
 </html>

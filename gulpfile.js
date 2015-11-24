@@ -17,23 +17,42 @@ gulp.task('server', function () {
     browserSync.init({
         files : `${paths.dist}/*.*`,
         server: {
-            baseDir: paths.dist
+            directory: true,
+            baseDir  : './'
         }
     });
 });
 
 gulp.task('dev', function () {
     return gulp.src(files.html)
+        .pipe(plugins.dom(function () {
+            // 抽离出HTML进行inLineCss
+            var tplContainer = this.createElement('div');
+
+            tplContainer.id = 'tpl-container';
+            tplContainer.innerHTML = this.querySelector('#entry-template').innerHTML;
+            this.querySelector('body').appendChild(tplContainer);
+
+            return this;
+        }))
         .pipe(plugins.inlineCss())
+        // 恢复
+        .pipe(plugins.dom(function () {
+            var tplContainer = this.querySelector('#tpl-container');
+
+            this.querySelector('#entry-template').innerHTML = tplContainer.innerHTML;
+            tplContainer.parentNode.removeChild(tplContainer);
+
+            return this;
+        }))
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('build', function () {
-    return gulp.src(files.html)
-        .pipe(plugins.inlineCss())
+gulp.task('build', ['dev'], function () {
+    return gulp.src(`${paths.dist}/*.html`)
         .pipe(plugins.minifyHtml())
         .pipe(plugins.dom(function () {
-            return this.querySelector('body').innerHTML
+            return this.querySelector('#entry-template').innerHTML
         }))
         .pipe(gulp.dest(paths.dist));
 });

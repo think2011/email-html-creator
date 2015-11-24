@@ -23,6 +23,8 @@
     "gulp-inline-css": "^3.0.0",
     "gulp-load-plugins": "^1.1.0",
     "gulp-minify-html": "^1.0.4",
-    "gulp-watch": "^4.3.5"
+    "gulp-watch": "^4.3.5",
+    "handlebars": "^4.0.5",
+    "jquery": "^2.1.4"
   }
 }
