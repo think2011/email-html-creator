@@ -1,3 +1,9 @@
-.entry {
-    background: skyblue;
+#container {
+    width: 750px;
+    overflow: hidden;
+    background-color: #fff;
+    text-align: left;
+    font-size: 12px;
+    font-family: "Microsoft YaHei", serif;
+    margin: 0 auto;
 }
