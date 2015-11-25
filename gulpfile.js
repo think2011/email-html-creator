@@ -25,7 +25,9 @@ gulp.task('server', function () {
 });
 
 gulp.task('dev', ['dev:sass'], function () {
-    gulp.src(`${paths.src}/*.html`)
+    return gulp.src(`${paths.src}/*.html`)
+        .pipe(plugins.plumber())
+
         // 包裹
         .pipe(plugins.fileWrapper(`${paths.sources}/index.html`))
 
@@ -49,24 +51,15 @@ gulp.task('dev', ['dev:sass'], function () {
             return this;
         }))
 
-        .pipe(gulp.dest(paths.dist))
-
-        .on('end', function () {
-            gulp.start('dev:clean')
-        });
+        .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('dev:sass', function () {
+gulp.task('dev:sass', function (cb) {
     return gulp.src(`${paths.src}/*.scss`)
+        .pipe(plugins.plumber())
         .pipe(plugins.sass().on('error', plugins.sass.logError))
-        .pipe(gulp.dest(paths.src));
+        .pipe(gulp.dest(paths.dist));
 });
-
-gulp.task('dev:clean', function () {
-    return gulp.src(`${paths.src}/*.css`)
-        .pipe(plugins.clean({force: true}));
-});
-
 
 gulp.task('build', ['dev'], function () {
     return gulp.src(`${paths.dist}/*.html`)
@@ -94,7 +87,7 @@ function insertLink () {
                     link     = document.createElement('link');
 
                 link.rel  = 'stylesheet';
-                link.href = `${fileName}.css`;
+                link.href = `../dist/${fileName}.css`;
                 document.querySelector('head').appendChild(link);
 
                 file.contents = new Buffer(jsdom.serializeDocument(window.document));
