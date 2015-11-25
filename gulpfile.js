@@ -16,7 +16,6 @@ var paths = {
 
 gulp.task('server', function () {
     browserSync.init({
-        files : `${paths.dist}/*.*`,
         server: {
             directory: true,
             baseDir  : './'
@@ -51,7 +50,9 @@ gulp.task('dev', ['dev:sass'], function () {
             return this;
         }))
 
-        .pipe(gulp.dest(paths.dist));
+        .pipe(gulp.dest(paths.dist))
+
+        .on('end', browserSync.reload);
 });
 
 gulp.task('dev:sass', function (cb) {
