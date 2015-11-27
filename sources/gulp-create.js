@@ -26,12 +26,16 @@ var processJson = function (template, form, goods) {
         case 'fixed':
             var _goodsTemp = {};
 
+            // 生成模板
+            Object.keys(form).forEach(v => {
+                json.tpl[v] = Array.isArray(form[v].default) ? form[v].default[0] : form[v].default;
+            });
+
             // 生成宝贝
             Object.keys(goods).forEach(v => _goodsTemp[v] = goods[v].default);
 
-            // 生成模板
 
-            for (var i = 0; i < _goodsTemplate.maxTd; i++) {
+            for (var i = 0; i < template.maxTd; i++) {
                 // 补充宝贝属性
                 _goodsTemp.picUrl = imgs.sort(v => 0.5 - Math.random())[0];
                 _goodsTemp.url    = '###';
@@ -77,15 +81,15 @@ module.exports = function (dist) {
 
             fs.writeFile(`${dir}/${fileName}.html`, html, 'utf8');
             fs.writeFile(`${dir}/${fileName}.scss`, css, 'utf8');
-            fs.writeFile(`${dir}/${fileName}.json`, JSON.stringify(json, null, 4), 'utf8');
+            fs.writeFile(`${dir}/${fileName}.json`, JSON.stringify(json, null, 2), 'utf8');
         }, tempaltes);
 
         // 删除文件
-        /* rimraf(file.path, function (err) {
-         this.emit('error', new gutil.PluginError('gulp-create', err));
-         });*/
+        rimraf(file.path, function (err) {
+            err && this.emit('error', new gutil.PluginError('gulp-create', err));
 
-        file.contents = new Buffer(JSON.stringify(content));
-        cb(null, file);
+            file.contents = new Buffer(JSON.stringify(content));
+            cb(null, file);
+        });
     })
 };
