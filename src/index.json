@@ -1,29 +1,49 @@
 {
+  "tpl": {
+    "title": "HOT SALE",
+    "subTitle1": "满300包邮",
+    "subTitle2": "/秋冬热卖",
+    "color": "black"
+  },
   "items": [
     [
       {
-        "promoPrice": "68.00",
-        "picUrl": "http://img.alicdn.com/bao/uploaded/i2/TB1TFxiJpXXXXc7XXXXXXXXXXXX_!!0-item_pic.jpg",
-        "price": "188.00",
-        "label": "热卖",
-        "soldQuantity": "0",
-        "seq": 0
+        "picUrl": "http://img.alicdn.com/bao/uploaded/i2/TB10sLTJFXXXXcSXXXXXXXXXXXX_!!0-item_pic.jpg",
+        "price": "299",
+        "title": "夏季清凉短袖",
+        "url": "http://item.taobao.com/item.htm?id=522563067537"
       },
       {
-        "promoPrice": "68.00",
-        "picUrl": "http://img.alicdn.com/bao/uploaded/i2/TB1m5BfHFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg",
-        "price": "188.00",
-        "label": "热卖",
-        "soldQuantity": "0",
-        "seq": 1
+        "picUrl": "http://img.alicdn.com/bao/uploaded/i2/TB10sLTJFXXXXcSXXXXXXXXXXXX_!!0-item_pic.jpg",
+        "price": "299",
+        "title": "夏季清凉短袖",
+        "url": "http://item.taobao.com/item.htm?id=522563067537"
       },
       {
-        "promoPrice": "68.00",
-        "picUrl": "http://img.alicdn.com/bao/uploaded/i1/TB1_9TGIpXXXXb7XXXXXXXXXXXX_!!0-item_pic.jpg",
-        "price": "188.00",
-        "label": "热卖",
-        "soldQuantity": "0",
-        "seq": 2
+        "picUrl": "http://img.alicdn.com/bao/uploaded/i2/TB10sLTJFXXXXcSXXXXXXXXXXXX_!!0-item_pic.jpg",
+        "price": "299",
+        "title": "夏季清凉短袖",
+        "url": "http://item.taobao.com/item.htm?id=522563067537"
+      }
+    ],
+    [
+      {
+        "picUrl": "http://img.alicdn.com/bao/uploaded/i2/TB10sLTJFXXXXcSXXXXXXXXXXXX_!!0-item_pic.jpg",
+        "price": "299",
+        "title": "夏季清凉短袖",
+        "url": "http://item.taobao.com/item.htm?id=522563067537"
+      },
+      {
+        "picUrl": "http://img.alicdn.com/bao/uploaded/i2/TB10sLTJFXXXXcSXXXXXXXXXXXX_!!0-item_pic.jpg",
+        "price": "299",
+        "title": "夏季清凉短袖",
+        "url": "http://item.taobao.com/item.htm?id=522563067537"
+      },
+      {
+        "picUrl": "http://img.alicdn.com/bao/uploaded/i2/TB10sLTJFXXXXcSXXXXXXXXXXXX_!!0-item_pic.jpg",
+        "price": "299",
+        "title": "夏季清凉短袖",
+        "url": "http://item.taobao.com/item.htm?id=522563067537"
       }
     ]
   ]

@@ -1,6 +1,3 @@
-# email-html-creator
-一个编写邮件HTML的工作环境，可以以外链style的方式编写HTML
-
-1. 自动打包成内联样式
-2. 并压缩HTML
-3. 仅提取`body`内的内容
+1. 编写tpl文件放在src,然后执行gulp create会自动创建3个开发文件
+2. 执行gulp,然后开发
+3. 完毕后执行gulp build完成打包

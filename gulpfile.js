@@ -3,6 +3,7 @@ var gulp        = require('gulp'),
     fs          = require('fs'),
     jsdom       = require("jsdom"),
     through     = require('through2'),
+    create      = require('./sources/gulp-create'),
     Entities    = require('html-entities').AllHtmlEntities,
     plugins     = require('gulp-load-plugins')(),
     browserSync = require('browser-sync').create();
@@ -11,6 +12,7 @@ var paths = {
     src    : './src',
     dist   : './dist',
     sources: './sources',
+    tmp    : './_tmp',
     build  : './build'
 };
 
@@ -55,12 +57,22 @@ gulp.task('dev', ['dev:sass'], function () {
         .on('end', browserSync.reload);
 });
 
+
 gulp.task('dev:sass', function (cb) {
     return gulp.src(`${paths.src}/*.scss`)
         .pipe(plugins.plumber())
         .pipe(plugins.sass().on('error', plugins.sass.logError))
         .pipe(gulp.dest(paths.dist));
 });
+
+
+// 生成开发文件
+gulp.task('dev:create', function (cb) {
+    return gulp.src(`${paths.src}/*.tpl`)
+        .pipe(create(paths.src))
+        .pipe(gulp.dest(paths.tmp))
+});
+
 
 gulp.task('build', ['dev'], function () {
     return gulp.src(`${paths.dist}/*.html`)
@@ -71,10 +83,11 @@ gulp.task('build', ['dev'], function () {
         .pipe(gulp.dest(paths.build));
 });
 
+
 gulp.task('default', ['dev', 'server'], function () {
     plugins.watch(`${paths.src}/*.*`, () => {
         gulp.start(['dev']);
-    })
+    });
 });
 
 
@@ -110,5 +123,4 @@ function decodeHtml () {
         file.contents = new Buffer(entities.decode(content));
         cb(null, file);
     })
-
 }
