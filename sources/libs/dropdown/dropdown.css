@@ -1,0 +1,127 @@
+.zy-dropdown {
+    position: relative;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    font-size: 14px;
+    vertical-align: middle;
+    color: #333;
+    text-align: left
+}
+
+.zy-dropdown .open {
+    *z-index: 1000
+}
+
+.zy-dropdown .dropdown-menu {
+    top: 30px;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 3px;
+    border: 1px solid #cdcdcd
+}
+
+.zy-dropdown .open > .dropdown-menu {
+    display: block
+}
+
+.zy-dropdown .dropdown ul {
+    margin: 0;
+    padding: 0;
+    list-style: none outside;
+}
+
+.zy-dropdown .dropdown-trigger {
+    float: left;
+    border: 1px solid #cdcdcd;
+    border-radius: 3px;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.zy-dropdown .dropdown-trigger-arrow {
+    position: relative;
+    float: left;
+    width: 28px;
+    height: 28px;
+    line-height: 0;
+    border-left: 1px solid #cdcdcd;
+}
+
+.zy-dropdown .dropdown-trigger-arrow b {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    margin: -2px 0 0 -4px;
+    overflow: hidden;
+    border-width: 4px 4px 0 4px;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+}
+
+.zy-dropdown .dropdown-trigger-txt {
+    float: left;
+    height: 28px;
+    overflow: hidden;
+    margin: 0 5px 0 10px;
+    line-height: 28px;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    font-size: smaller;
+}
+
+.zy-dropdown .dropdown-trigger-arrow {
+    position: relative;
+    float: left;
+    width: 28px;
+    height: 28px;
+    line-height: 0;
+    border-left: 1px solid #cdcdcd;
+}
+
+.zy-dropdown .dropdown-menu {
+    padding: 5px;
+    top: 30px;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 3px;
+    border: 1px solid #cdcdcd;
+}
+
+.zy-dropdown .dropdown-menu ul {
+    overflow: hidden;
+    zoom: 1;
+}
+
+.zy-dropdown .dropdown-menu li.current {
+    color: #fff;
+    background: #2bb8aa;
+}
+
+.zy-dropdown .dropdown-menu li {
+    float: left;
+    display: inline;
+    margin: 2px 0 2px -1px;
+    height: 25px;
+    line-height: 25px;
+}
+
+.zy-dropdown .dropdown-menu span {
+    padding: 0 10px;
+    white-space: nowrap;
+    font-size: 12px;
+    border-left: 1px solid #999;
+}
+
+.zy-dropdown .dropdown-menu li:hover {
+    color: #2bb8aa;
+    cursor: pointer
+}
+
+.zy-dropdown .dropdown-menu li.current {
+    color: #fff;
+    background: #2bb8aa
+}

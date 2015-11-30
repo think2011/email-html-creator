@@ -1,0 +1,15 @@
+.zyColorSelector span {
+    float: left;
+    display: inline;
+    width: 30px;
+    height: 30px;
+    margin: 0 0 1px 1px;
+    text-indent: -99px;
+    overflow: hidden;
+    cursor: pointer;
+    background-repeat: no-repeat !important;
+    background-position: 50% 50% !important;
+}
+.zyColorSelector span.current {
+    background-image: url(colorselector.png) !important;
+}

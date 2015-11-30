@@ -51,11 +51,15 @@ var processJson = function (template, form, goods) {
 
         // 生成form
         json.form.schema[v] = {
-            type : formValue.type,
-            title: formValue.desc
+            type   : formValue.type,
+            title  : formValue.desc,
+            default: formValue.default
         };
 
-        if (Array.isArray(formValue.default)) json.form.schema[v].enum = formValue.default;
+        if (Array.isArray(formValue.default)) {
+            json.form.schema[v].enum    = formValue.default;
+            json.form.schema[v].default = json.form.schema[v].enum[0];
+        }
 
         json.form.form.push({
             key : v,
@@ -99,15 +103,12 @@ module.exports = function (dist) {
         }, tempaltes);
 
         // 删除文件
-        /* rimraf(file.path, function (err) {
-         err && this.emit('error', new gutil.PluginError('gulp-create', err));
+        rimraf(file.path, function (err) {
+            err && this.emit('error', new gutil.PluginError('gulp-create', err));
 
-         file.contents = new Buffer(JSON.stringify(content));
-         cb(null, file);
-         });*/
+            file.contents = new Buffer(JSON.stringify(content));
+            cb(null, file);
+        });
 
-        // TODO aHao 15/11/30
-        file.contents = new Buffer(JSON.stringify(content));
-        cb(null, file);
     })
 };

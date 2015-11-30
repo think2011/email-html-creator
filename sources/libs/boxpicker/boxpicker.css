@@ -1,0 +1,55 @@
+.boxpicker {
+    display: inline-block;
+}
+
+.boxpicker ul {
+    margin: 0;
+    padding: 0;
+}
+
+.boxpicker li {
+    float: left;
+    height: 28px;
+    position: relative;
+    margin: 2px 6px 2px 0;
+    outline: none;
+    list-style: none;
+}
+
+.boxpicker li a {
+    font-size: 14px;
+    padding: 1px 15px;
+    border: 1px solid #ccc;
+    background: #fff;
+    display: inline-block;
+    line-height: 24px;
+    color: #555;
+    text-decoration: none;
+}
+
+.boxpicker li a:hover {
+    color: #2bb8aa;
+    border: 1px solid #2bb8aa;
+}
+
+.boxpicker li i {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    font-size: 0;
+    line-height: 0;
+    right: 2px;
+    bottom: 1px;
+    background: url(boxpicker.png) no-repeat right bottom;
+    display: none;
+}
+
+.boxpicker li.selected a {
+    border: 2px solid #2bb8aa;
+    padding: 0 15px;
+}
+
+.boxpicker li.selected i {
+    display: block;
+}
+
