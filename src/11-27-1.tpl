@@ -44,15 +44,15 @@
     },
     "price": {
       "desc": "原价",
-      "default": "188.00"
+      "default": 0
     },
     "promoPrice": {
       "desc": "促销价",
-      "default": "88.00"
+      "default": 0
     },
     "soldQuantity": {
       "desc": "销量",
-      "default": "1234"
+      "default": 0
     }
   }
 }

@@ -16,6 +16,28 @@ var imgs = [
     'https://img.alicdn.com/bao/uploaded/i3/TB1Ptb0HpXXXXcmXpXXXXXXXXXX_!!0-item_pic.jpg'
 ];
 
+
+function rand (begin, end, floor) {
+    return floor
+        ? ((Math.random() * (end - begin)) + begin).toFixed(2)
+        : Math.ceil(Math.random() * (end - begin)) + begin;
+}
+
+var createGoodsObj = function (goodsObj) {
+    var temp = Object.assign({}, goodsObj, {
+        title       : goodsObj.title.slice(0, rand(5, goodsObj.title.length)),
+        picUrl      : imgs.shift(),
+        url         : '###',
+        price       : rand(1, 5000, true),
+        promoPrice  : rand(1, 5000, true),
+        soldQuantity: rand(1, 5000)
+    });
+
+    imgs.push(temp.picUrl);
+
+    return temp;
+}
+
 var processJson = function (template, form, goods) {
     var json       = {
             form : {
@@ -27,20 +49,15 @@ var processJson = function (template, form, goods) {
         },
         _goodsTemp = {};
 
+    // 生成宝贝
+    Object.keys(goods).forEach(v => _goodsTemp[v] = goods[v].default);
+
     switch (template.type) {
         case 'fixed':
             var tds = [];
 
-            // 生成宝贝
-            Object.keys(goods).forEach(v => _goodsTemp[v] = goods[v].default);
-
             for (var i = 0; i < template.maxTd; i++) {
-                tds[i] = Object.assign({
-                    picUrl: imgs.shift(),
-                    url   : '###'
-                }, _goodsTemp);
-
-                imgs.push(tds[i].picUrl);
+                tds[i] = createGoodsObj(_goodsTemp);
             }
 
             json.items.push(tds);
@@ -48,19 +65,9 @@ var processJson = function (template, form, goods) {
 
         case 'flow':
         default:
-            // 生成宝贝
-            Object.keys(goods).forEach(v => _goodsTemp[v] = goods[v].default);
-
             for (var i = 0; i < template.maxTd; i++) {
-                var _temp = Object.assign({
-                    picUrl: imgs.shift(),
-                    url   : '###'
-                }, _goodsTemp);
-
-                json.items.push(_temp);
-                imgs.push(_temp.picUrl);
+                json.items.push(createGoodsObj(_goodsTemp));
             }
-
     }
 
     Object.keys(form).forEach(v => {
