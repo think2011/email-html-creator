@@ -1,12 +1,12 @@
 {
   "模板定义": {
     "750": {
-      "type": "fixed",
+      "type": "flow",
       "maxTr": 12,
       "maxTd": 3
     },
     "790": {
-      "type": "fixed",
+      "type": "flow",
       "maxTr": 12,
       "maxTd": 4
     }
@@ -36,7 +36,7 @@
   "宝贝定义": {
     "title": {
       "desc": "标题",
-      "default": "SHERRY小玉酱2015秋冬麻花流苏披肩围巾女士百搭款围脖秋冬保暖"
+      "default": "SHERRY小玉酱2015秋冬麻花流苏披肩围巾女士百搭款围脖秋"
     },
     "label": {
       "desc": "标签",

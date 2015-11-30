@@ -1,12 +1,12 @@
 {
   "模板定义": {
     "750": {
-      "type": "fixed",
+      "type": "flow",
       "maxTr": 12,
       "maxTd": 3
     },
     "790": {
-      "type": "fixed",
+      "type": "flow",
       "maxTr": 12,
       "maxTd": 4
     }

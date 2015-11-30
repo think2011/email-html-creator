@@ -53,7 +53,7 @@ var processJson = function (template, form, goods) {
     Object.keys(goods).forEach(v => _goodsTemp[v] = goods[v].default);
 
     switch (template.type) {
-        case 'fixed':
+        case 'flow':
             var tds = [];
 
             for (var i = 0; i < template.maxTd; i++) {
@@ -61,9 +61,10 @@ var processJson = function (template, form, goods) {
             }
 
             json.items.push(tds);
+            json.items.push(tds);
             break;
 
-        case 'flow':
+        case 'fixed':
         default:
             for (var i = 0; i < template.maxTd; i++) {
                 json.items.push(createGoodsObj(_goodsTemp));
