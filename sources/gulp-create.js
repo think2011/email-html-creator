@@ -73,10 +73,6 @@ module.exports = function (dist) {
                       font-size: 12px;
                       font-family: "Microsoft YaHei", serif;
                       margin: 0 auto;
-
-                      table {
-                        background: skyblue;
-                      }
                     }
                 `,
                 html     = `<div id="container"></div>`,
