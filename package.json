@@ -29,6 +29,7 @@
     "gulp-watch": "^4.3.5",
     "handlebars": "^4.0.5",
     "html-entities": "^1.2.0",
+    "iconv-lite": "^0.4.13",
     "jquery": "^2.1.4",
     "rimraf": "^2.4.4",
     "through2": "^2.0.0"

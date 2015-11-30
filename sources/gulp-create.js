@@ -2,6 +2,7 @@ var through = require('through2'),
     gutil   = require('gulp-util'),
     fs      = require('fs'),
     path    = require('path'),
+    iconv   = require('iconv-lite'),
     rimraf  = require('rimraf');
 
 var imgs = [
@@ -16,19 +17,37 @@ var imgs = [
 ];
 
 var processJson = function (template, form, goods) {
-    var json = {
-        form : {
-            schema: {},
-            form  : []
+    var json       = {
+            form : {
+                schema: {},
+                form  : []
+            },
+            tpl : {},
+            items: []
         },
-        tpl  : {},
-        items: []
-    };
+        _goodsTemp = {};
 
     switch (template.type) {
         case 'fixed':
-            var _goodsTemp = {};
+            var tds = [];
 
+            // 生成宝贝
+            Object.keys(goods).forEach(v => _goodsTemp[v] = goods[v].default);
+
+            for (var i = 0; i < template.maxTd; i++) {
+                tds[i] = Object.assign({
+                    picUrl: imgs.shift(),
+                    url   : '###'
+                }, _goodsTemp);
+
+                imgs.push(tds[i].picUrl);
+            }
+
+            json.items.push(tds);
+            break;
+
+        case 'flow':
+        default:
             // 生成宝贝
             Object.keys(goods).forEach(v => _goodsTemp[v] = goods[v].default);
 
@@ -41,11 +60,7 @@ var processJson = function (template, form, goods) {
                 json.items.push(_temp);
                 imgs.push(_temp.picUrl);
             }
-            break;
 
-        case 'flow':
-        default:
-        //
     }
 
     Object.keys(form).forEach(v => {
@@ -98,10 +113,9 @@ module.exports = function (dist) {
                 `,
                 html     = `<div id="container"></div>`,
                 fileName = `${file.relative.split('.')[0]}-${v}`;
-
-            fs.writeFile(`${dir}/${fileName}.html`, html, 'utf8');
-            fs.writeFile(`${dir}/${fileName}.scss`, css, 'utf8');
-            fs.writeFile(`${dir}/${fileName}.json`, JSON.stringify(json, null, 2), 'utf8');
+            fs.writeFile(`${dir}/${fileName}.html`, iconv.encode(html, 'utf-8'), null);
+            fs.writeFile(`${dir}/${fileName}.scss`, iconv.encode(css, 'utf-8'), null);
+            fs.writeFile(`${dir}/${fileName}.json`, iconv.encode(JSON.stringify(json, null, 2), 'utf-8'), null);
         }, tempaltes);
 
         // 删除文件
@@ -111,6 +125,5 @@ module.exports = function (dist) {
             file.contents = new Buffer(JSON.stringify(content));
             cb(null, file);
         });
-
     })
 };
