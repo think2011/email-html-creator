@@ -17,7 +17,10 @@ var imgs = [
 
 var processJson = function (template, form, goods) {
     var json = {
-        form : {},
+        // TODO aHao 15/11/30
+        form : {
+            "说明": '会用于jsonForm预览,延后实现此功能'
+        },
         tpl  : {},
         items: []
     };
