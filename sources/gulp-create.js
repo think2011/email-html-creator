@@ -23,6 +23,13 @@ function rand (begin, end, floor) {
         : Math.ceil(Math.random() * (end - begin)) + begin;
 }
 
+var splitFloat = function (num) {
+    return [
+        num.split('.')[0],
+        `.${num.split('.')[1]}`
+    ];
+};
+
 var createGoodsObj = function (goodsObj) {
     var temp = Object.assign({}, goodsObj, {
         title       : goodsObj.title.slice(0, rand(5, goodsObj.title.length)),
@@ -33,10 +40,16 @@ var createGoodsObj = function (goodsObj) {
         soldQuantity: rand(1, 5000)
     });
 
+    // 增加整数和小数部分
+    temp.price_a      = splitFloat(temp.price)[0];
+    temp.price_b      = splitFloat(temp.price)[1];
+    temp.promoPrice_a = splitFloat(temp.promoPrice)[0];
+    temp.promoPrice_b = splitFloat(temp.promoPrice)[1];
+
     imgs.push(temp.picUrl);
 
     return temp;
-}
+};
 
 var processJson = function (template, form, goods) {
     var json       = {

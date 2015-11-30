@@ -46,8 +46,24 @@
       "desc": "原价",
       "default": 0
     },
+    "price_a": {
+      "desc": "原价_整数部分",
+      "default": 0
+    },
+    "price_b": {
+      "desc": "原价_小数部分",
+      "default": 0
+    },
     "promoPrice": {
       "desc": "促销价",
+      "default": 0
+    },
+    "promoPrice_a": {
+      "desc": "促销价_整数部分",
+      "default": 0
+    },
+    "promoPrice_b": {
+      "desc": "促销价_小数部分",
       "default": 0
     },
     "soldQuantity": {
