@@ -5,14 +5,14 @@ var through = require('through2'),
     rimraf  = require('rimraf');
 
 var imgs = [
-    'https://img.alicdn.com/bao/uploaded/i1/TB1vNSAKpXXXXXkaXXXXXXXXXXX_!!0-item_pic.jpg_sum.jpg',
-    'https://img.alicdn.com/bao/uploaded/i2/TB19BoKIFXXXXbxXFXXXXXXXXXX_!!0-item_pic.jpg_sum.jpg',
-    'https://img.alicdn.com/bao/uploaded/i2/TB1tYNUKFXXXXcXXFXXXXXXXXXX_!!0-item_pic.jpg_sum.jpg',
-    'https://img.alicdn.com/bao/uploaded/i4/TB1uXoxKXXXXXbcXXXXXXXXXXXX_!!0-item_pic.jpg_sum.jpg',
-    'https://img.alicdn.com/bao/uploaded/i2/TB1.H9MKpXXXXasXVXXXXXXXXXX_!!0-item_pic.jpg_sum.jpg',
-    'https://img.alicdn.com/bao/uploaded/i1/TB10wJkKpXXXXcIaXXXXXXXXXXX_!!0-item_pic.jpg_sum.jpg',
-    'https://img.alicdn.com/bao/uploaded/i3/TB1BwiOKpXXXXaMXFXXXXXXXXXX_!!0-item_pic.jpg_sum.jpg',
-    'https://img.alicdn.com/bao/uploaded/i3/TB1Ptb0HpXXXXcmXpXXXXXXXXXX_!!0-item_pic.jpg_sum.jpg'
+    'https://img.alicdn.com/bao/uploaded/i1/TB1vNSAKpXXXXXkaXXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i2/TB19BoKIFXXXXbxXFXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i2/TB1tYNUKFXXXXcXXFXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i4/TB1uXoxKXXXXXbcXXXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i2/TB1.H9MKpXXXXasXVXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i1/TB10wJkKpXXXXcIaXXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i3/TB1BwiOKpXXXXaMXFXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i3/TB1Ptb0HpXXXXcmXpXXXXXXXXXX_!!0-item_pic.jpg'
 ];
 
 var processJson = function (template, form, goods) {
@@ -32,12 +32,14 @@ var processJson = function (template, form, goods) {
             // 生成宝贝
             Object.keys(goods).forEach(v => _goodsTemp[v] = goods[v].default);
 
-
             for (var i = 0; i < template.maxTd; i++) {
-                // 补充宝贝属性
-                _goodsTemp.picUrl = imgs.sort(v => 0.5 - Math.random())[0];
-                _goodsTemp.url    = '###';
-                json.items.push(_goodsTemp);
+                var _temp = Object.assign({
+                    picUrl: imgs.shift(),
+                    url   : '###'
+                }, _goodsTemp);
+
+                json.items.push(_temp);
+                imgs.push(_temp.picUrl);
             }
             break;
 
@@ -103,12 +105,15 @@ module.exports = function (dist) {
         }, tempaltes);
 
         // 删除文件
-        rimraf(file.path, function (err) {
-            err && this.emit('error', new gutil.PluginError('gulp-create', err));
+        /*  rimraf(file.path, function (err) {
+         err && this.emit('error', new gutil.PluginError('gulp-create', err));
 
-            file.contents = new Buffer(JSON.stringify(content));
-            cb(null, file);
-        });
+         file.contents = new Buffer(JSON.stringify(content));
+         cb(null, file);
+         });
+         */
+        file.contents = new Buffer(JSON.stringify(content));
+        cb(null, file);
 
     })
 };
