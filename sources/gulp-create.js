@@ -17,9 +17,9 @@ var imgs = [
 
 var processJson = function (template, form, goods) {
     var json = {
-        // TODO aHao 15/11/30
         form : {
-            "说明": '会用于jsonForm预览,延后实现此功能'
+            schema: {},
+            form  : []
         },
         tpl  : {},
         items: []
@@ -28,11 +28,6 @@ var processJson = function (template, form, goods) {
     switch (template.type) {
         case 'fixed':
             var _goodsTemp = {};
-
-            // 生成模板
-            Object.keys(form).forEach(v => {
-                json.tpl[v] = Array.isArray(form[v].default) ? form[v].default[0] : form[v].default;
-            });
 
             // 生成宝贝
             Object.keys(goods).forEach(v => _goodsTemp[v] = goods[v].default);
@@ -50,6 +45,26 @@ var processJson = function (template, form, goods) {
         default:
         //
     }
+
+    Object.keys(form).forEach(v => {
+        var formValue = form[v];
+
+        // 生成form
+        json.form.schema[v] = {
+            type : formValue.type,
+            title: formValue.desc
+        };
+
+        if (Array.isArray(formValue.default)) json.form.schema[v].enum = formValue.default;
+
+        json.form.form.push({
+            key : v,
+            type: formValue.fn
+        });
+
+        // 生成模板
+        json.tpl[v] = Array.isArray(formValue.default) ? formValue.default[0] : formValue.default;
+    });
 
     return json;
 };
@@ -84,11 +99,15 @@ module.exports = function (dist) {
         }, tempaltes);
 
         // 删除文件
-        rimraf(file.path, function (err) {
-            err && this.emit('error', new gutil.PluginError('gulp-create', err));
+        /* rimraf(file.path, function (err) {
+         err && this.emit('error', new gutil.PluginError('gulp-create', err));
 
-            file.contents = new Buffer(JSON.stringify(content));
-            cb(null, file);
-        });
+         file.contents = new Buffer(JSON.stringify(content));
+         cb(null, file);
+         });*/
+
+        // TODO aHao 15/11/30
+        file.contents = new Buffer(JSON.stringify(content));
+        cb(null, file);
     })
 };
