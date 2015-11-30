@@ -26,7 +26,7 @@ function rand (begin, end, floor) {
 var splitFloat = function (num) {
     return [
         num.split('.')[0],
-        `.${num.split('.')[1]}`
+        num.split('.')[1]
     ];
 };
 
