@@ -74,6 +74,13 @@ gulp.task('dev:create', function (cb) {
 });
 
 
+// 生成开发文件
+gulp.task('dev:clean', function () {
+    return gulp.src(`${paths.dist}/*.*`)
+        .pipe(plugins.clean())
+});
+
+
 gulp.task('build', ['dev'], function () {
     return gulp.src(`${paths.dist}/*.html`)
         .pipe(plugins.minifyHtml())
@@ -84,7 +91,7 @@ gulp.task('build', ['dev'], function () {
 });
 
 
-gulp.task('default', ['dev', 'server'], function () {
+gulp.task('default', ['dev:clean', 'dev', 'server'], function () {
     plugins.watch(`${paths.src}/*.*`, () => {
         gulp.start(['dev']);
     });
