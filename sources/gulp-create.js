@@ -105,15 +105,12 @@ module.exports = function (dist) {
         }, tempaltes);
 
         // 删除文件
-        /*  rimraf(file.path, function (err) {
-         err && this.emit('error', new gutil.PluginError('gulp-create', err));
+        rimraf(file.path, function (err) {
+            err && this.emit('error', new gutil.PluginError('gulp-create', err));
 
-         file.contents = new Buffer(JSON.stringify(content));
-         cb(null, file);
-         });
-         */
-        file.contents = new Buffer(JSON.stringify(content));
-        cb(null, file);
+            file.contents = new Buffer(JSON.stringify(content));
+            cb(null, file);
+        });
 
     })
 };
