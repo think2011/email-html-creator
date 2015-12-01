@@ -18,6 +18,12 @@
       "desc": "标题",
       "default": "周末促销"
     },
+    "subTitle": {
+      "type": "string",
+      "fn": "text",
+      "desc": "子标题",
+      "default": "周末各种特色大促销"
+    },
     "color": {
       "type": "string",
       "fn": "zyColorSelector",

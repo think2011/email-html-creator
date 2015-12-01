@@ -122,14 +122,10 @@ module.exports = function (dist) {
             var dir      = path.join(process.cwd(), dist),
                 json     = processJson(this[v], form, goods),
                 css      = `
+                    @import "../sources/common";
+
                     #container {
                       width: ${v}px;
-                      overflow: hidden;
-                      background-color: #fff;
-                      text-align: left;
-                      font-size: 12px;
-                      font-family: "Microsoft YaHei", serif;
-                      margin: 0 auto;
                     }
                 `,
                 html     = `<div id="container"></div>`,

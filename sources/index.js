@@ -40,7 +40,7 @@ $.getJSON('/src/' + json).then(function (rst) {
 
     // 置入
     $('body')
-        .append(`<div id="template">${template(rst)}</div>`)
+        .append(`<div id="template" style="margin: 20px;">${template(rst)}</div>`)
         .append($form);
     createLink(link);
 });
