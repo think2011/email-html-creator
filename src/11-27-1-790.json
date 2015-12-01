@@ -1,0 +1,155 @@
+{
+  "form": {
+    "schema": {
+      "title": {
+        "type": "string",
+        "title": "标题",
+        "default": "周末促销"
+      },
+      "subTitle": {
+        "type": "string",
+        "title": "子标题",
+        "default": "周末促销周末促销"
+      },
+      "color": {
+        "type": "string",
+        "title": "颜色",
+        "default": "#ff6b1b",
+        "enum": [
+          "#ff6b1b",
+          "#ff93a7",
+          "#a9856d",
+          "#3ebba3",
+          "#fd0d62",
+          "#4bbc2c",
+          "#3385ff"
+        ]
+      }
+    },
+    "form": [
+      {
+        "key": "title",
+        "type": "text"
+      },
+      {
+        "key": "color",
+        "type": "zyColorSelector"
+      }
+    ]
+  },
+  "tpl": {
+    "title": "周末促销",
+    "color": "#ff6b1b",
+    "subTitle": "周末促销周末促销周末促销"
+  },
+  "items": [
+    [
+      {
+        "title": "SHERRY小玉酱2015秋冬麻花流苏",
+        "label": "促销",
+        "price": "1475.06",
+        "price_a": "1475",
+        "price_b": "06",
+        "promoPrice": "2438.16",
+        "promoPrice_a": "2438",
+        "promoPrice_b": "16",
+        "soldQuantity": 183,
+        "picUrl": "https://img.alicdn.com/bao/uploaded/i4/TB1uXoxKXXXXXbcXXXXXXXXXXXX_!!0-item_pic.jpg",
+        "url": "###"
+      },
+      {
+        "title": "SHERRY小玉酱2015秋冬麻花流苏披肩围巾女士百搭",
+        "label": "促销",
+        "price": "1067.78",
+        "price_a": "1067",
+        "price_b": "78",
+        "promoPrice": "3598.03",
+        "promoPrice_a": "3598",
+        "promoPrice_b": "03",
+        "soldQuantity": 2137,
+        "picUrl": "https://img.alicdn.com/bao/uploaded/i2/TB1.H9MKpXXXXasXVXXXXXXXXXX_!!0-item_pic.jpg",
+        "url": "###"
+      },
+      {
+        "title": "SHERRY小玉酱2",
+        "label": "促销",
+        "price": "2669.63",
+        "price_a": "2669",
+        "price_b": "63",
+        "promoPrice": "4894.24",
+        "promoPrice_a": "4894",
+        "promoPrice_b": "24",
+        "soldQuantity": 2806,
+        "picUrl": "https://img.alicdn.com/bao/uploaded/i1/TB10wJkKpXXXXcIaXXXXXXXXXXX_!!0-item_pic.jpg",
+        "url": "###"
+      },
+      {
+        "title": "SHERRY小玉酱2",
+        "label": "促销",
+        "price": "1223.52",
+        "price_a": "1223",
+        "price_b": "52",
+        "promoPrice": "1670.35",
+        "promoPrice_a": "1670",
+        "promoPrice_b": "35",
+        "soldQuantity": 3526,
+        "picUrl": "https://img.alicdn.com/bao/uploaded/i3/TB1BwiOKpXXXXaMXFXXXXXXXXXX_!!0-item_pic.jpg",
+        "url": "###"
+      }
+    ],
+    [
+      {
+        "title": "SHERRY小玉酱2015秋冬麻花流苏",
+        "label": "促销",
+        "price": "1475.06",
+        "price_a": "1475",
+        "price_b": "06",
+        "promoPrice": "2438.16",
+        "promoPrice_a": "2438",
+        "promoPrice_b": "16",
+        "soldQuantity": 183,
+        "picUrl": "https://img.alicdn.com/bao/uploaded/i4/TB1uXoxKXXXXXbcXXXXXXXXXXXX_!!0-item_pic.jpg",
+        "url": "###"
+      },
+      {
+        "title": "SHERRY小玉酱2015秋冬麻花流苏披肩围巾女士百搭",
+        "label": "促销",
+        "price": "1067.78",
+        "price_a": "1067",
+        "price_b": "78",
+        "promoPrice": "3598.03",
+        "promoPrice_a": "3598",
+        "promoPrice_b": "03",
+        "soldQuantity": 2137,
+        "picUrl": "https://img.alicdn.com/bao/uploaded/i2/TB1.H9MKpXXXXasXVXXXXXXXXXX_!!0-item_pic.jpg",
+        "url": "###"
+      },
+      {
+        "title": "SHERRY小玉酱2",
+        "label": "促销",
+        "price": "2669.63",
+        "price_a": "2669",
+        "price_b": "63",
+        "promoPrice": "4894.24",
+        "promoPrice_a": "4894",
+        "promoPrice_b": "24",
+        "soldQuantity": 2806,
+        "picUrl": "https://img.alicdn.com/bao/uploaded/i1/TB10wJkKpXXXXcIaXXXXXXXXXXX_!!0-item_pic.jpg",
+        "url": "###"
+      },
+      {
+        "title": "SHERRY小玉酱2",
+        "label": "促销",
+        "price": "1223.52",
+        "price_a": "1223",
+        "price_b": "52",
+        "promoPrice": "1670.35",
+        "promoPrice_a": "1670",
+        "promoPrice_b": "35",
+        "soldQuantity": 3526,
+        "picUrl": "https://img.alicdn.com/bao/uploaded/i3/TB1BwiOKpXXXXaMXFXXXXXXXXXX_!!0-item_pic.jpg",
+        "url": "###"
+      }
+    ]
+  ]
+}
