@@ -55,8 +55,5 @@ var createLink = function (link) {
 };
 
 // 初始化
-var link = '/sources/libs/colorselector/colorselector.css';
-createLink(link);
-
-var baseStyle = '<style>textarea{display:none;}; #[id^="tpl-"] {margin:20px;}; form{margin: 30px;padding: 20px; border-top: 1px solid #eee;}</style>';
-$('head').append(baseStyle);
+createLink('/sources/index.css');
+createLink('/sources/libs/colorselector/colorselector.css');

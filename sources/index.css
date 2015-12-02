@@ -1,0 +1,13 @@
+textarea {
+    display: none;
+}
+
+[id^="tpl-"] {
+    margin: 20px;
+}
+
+form {
+    margin: 30px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
