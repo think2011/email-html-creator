@@ -32,6 +32,6 @@ module.exports = function (jsonDir) {
 
         setTimeout(function () {
             cb(null, file);
-        }, 0);
+        }, 300);
     })
 };

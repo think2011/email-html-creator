@@ -1,22 +1,32 @@
 var jsonSrc = '/dist/' + (location.pathname.split('/').pop()).split('.').shift() + '.json';
-/*
- var source   = $("#entry-template").html();
- var template = Handlebars.compile(source);
 
- */
 
-$.getJSON(jsonSrc).then(function (rst) {
-    var formJson = null;
+// 触发渲染模板
+$(document).on('renderTpl', function (event, rst) {
+    var $form  = $('form'),
+        newRst = $form.jsonFormValue && $form.jsonFormValue();
 
     Object.keys(rst).forEach(function (v) {
-        render(v, rst[v]);
+        rst[v].tpl = newRst || rst[v].tpl;
 
-        formJson = rst[v].form;
+        render(v, rst[v]);
+    });
+});
+
+$.getJSON(jsonSrc).then(function (rst) {
+    $(document).trigger('renderTpl', rst);
+
+    var $form    = $('<form></form>'),
+        formJson = rst[Object.keys(rst)[0]].form;
+
+    $form.jsonForm(formJson);
+
+    $form.on('click', function () {
+        $(document).trigger('renderTpl', rst)
+    }).find('input').on('keyup', function () {
+        $(document).trigger('renderTpl', rst)
     });
 
-    var $form = $('<form></form>');
-    $form.jsonForm(formJson);
-    $form.on('click', renderForm).find('input').on('keyup', renderForm);
     $('body').append($form);
 });
 
@@ -34,15 +44,6 @@ function render (size, json) {
 
         render(size, json);
     }
-}
-
-function renderForm (rst) {
-    var newRst = $('form').jsonFormValue();
-
-
-    Object.keys(rst).forEach(function (v) {
-        render(v, newRst);
-    });
 }
 
 var createLink = function (link) {
