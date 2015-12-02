@@ -4,6 +4,8 @@ var gulp        = require('gulp'),
     jsdom       = require("jsdom"),
     through     = require('through2'),
     create      = require('./sources/gulp-create'),
+    build       = require('./sources/gulp-build'),
+    dev         = require('./sources/gulp-dev'),
     Entities    = require('html-entities').AllHtmlEntities,
     plugins     = require('gulp-load-plugins')(),
     browserSync = require('browser-sync').create();
@@ -25,9 +27,11 @@ gulp.task('server', function () {
     });
 });
 
-gulp.task('dev', ['dev:sass'], function () {
+gulp.task('dev', ['dev:json', 'dev:sass'], function () {
     return gulp.src(`${paths.src}/*.html`)
         .pipe(plugins.plumber())
+
+        .pipe(dev(paths.dist))
 
         // 包裹
         .pipe(plugins.fileWrapper(`${paths.sources}/index.html`))
@@ -40,17 +44,6 @@ gulp.task('dev', ['dev:sass'], function () {
 
         // 样式转内联
         .pipe(plugins.inlineCss())
-
-        // 收工
-        .pipe(plugins.dom(function () {
-            var textarea      = this.querySelector('textarea'),
-                entryTemplate = this.querySelector('#entry-template');
-
-            entryTemplate.innerHTML = textarea.value;
-            textarea.parentNode.removeChild(textarea);
-
-            return this;
-        }))
 
         .pipe(gulp.dest(paths.dist))
 
@@ -65,29 +58,32 @@ gulp.task('dev:sass', function (cb) {
         .pipe(gulp.dest(paths.dist));
 });
 
-
-// 生成开发文件
-gulp.task('dev:create', function (cb) {
-    return gulp.src(`${paths.src}/*.tpl`)
-        .pipe(create(paths.src))
-        .pipe(gulp.dest(paths.tmp))
+gulp.task('dev:json', function () {
+    return gulp.src(`${paths.src}/*.json`)
+        .pipe(plugins.plumber())
+        .pipe(create())
+        .pipe(gulp.dest(paths.dist));
 });
 
 
-// 生成开发文件
+// 清空内容
 gulp.task('dev:clean', function () {
     return gulp.src(`${paths.dist}/*.*`)
         .pipe(plugins.clean())
 });
 
 
-gulp.task('build', ['dev'], function () {
+gulp.task('build', function () {
+    /*  return gulp.src(`${paths.dist}/!*.html`)
+     .pipe(plugins.minifyHtml())
+     .pipe(plugins.dom(function () {
+     return this.querySelector('#entry-template').innerHTML
+     }))
+     .pipe(gulp.dest(paths.build));*/
+
+    // TODO aHao 15/12/2
     return gulp.src(`${paths.dist}/*.html`)
-        .pipe(plugins.minifyHtml())
-        .pipe(plugins.dom(function () {
-            return this.querySelector('#entry-template').innerHTML
-        }))
-        .pipe(gulp.dest(paths.build));
+        .pipe(build(paths.build));
 });
 
 
@@ -96,7 +92,6 @@ gulp.task('default', ['dev:clean', 'dev', 'server'], function () {
         gulp.start(['dev']);
     });
 });
-
 
 function insertLink () {
     return through.obj(function (file, enc, cb) {
@@ -107,7 +102,7 @@ function insertLink () {
                 var document = window.document,
                     link     = document.createElement('link');
 
-                link.rel  = 'stylesheet';
+                link.rel = 'stylesheet';
                 link.href = `../dist/${fileName}.css`;
                 document.querySelector('head').appendChild(link);
 

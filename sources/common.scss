@@ -1,6 +1,6 @@
 @import "normalize";
 
-#container {
+.container {
   overflow: hidden;
   text-align: left;
   font-size: 12px;
@@ -82,7 +82,6 @@ a {
   .m-l-#{$i} {
     margin-left: #{$i}px;
   }
-
   .m-t-o-#{$i} {
     margin-top: #{-$i}px;
   }

@@ -34,7 +34,7 @@ var createGoodsObj = function (goodsObj) {
     var temp = Object.assign({}, goodsObj, {
         title       : goodsObj.title.slice(0, rand(5, goodsObj.title.length)),
         picUrl      : imgs.shift(),
-        url         : '###',
+        url         : 'http://taobao.com',
         price       : rand(1, 5000, true),
         promoPrice  : rand(1, 5000, true),
         soldQuantity: rand(1, 5000)
@@ -53,7 +53,8 @@ var createGoodsObj = function (goodsObj) {
 
 var processJson = function (template, form, goods) {
     var json       = {
-            form : {
+            size : {},
+            form: {
                 schema: {},
                 form  : []
             },
@@ -61,6 +62,9 @@ var processJson = function (template, form, goods) {
             items: []
         },
         _goodsTemp = {};
+
+    // 生成size
+    json.size = template;
 
     // 生成宝贝
     Object.keys(goods).forEach(v => _goodsTemp[v] = goods[v].default);
@@ -111,36 +115,19 @@ var processJson = function (template, form, goods) {
     return json;
 };
 
-module.exports = function (dist) {
+module.exports = function () {
     return through.obj(function (file, enc, cb) {
         var content   = JSON.parse(file.contents.toString()),
             tempaltes = content['模板定义'],
             form      = content['表单定义'],
-            goods     = content['宝贝定义'];
+            goods     = content['宝贝定义'],
+            tpls      = {};
 
         Object.keys(tempaltes).forEach(function (v) {
-            var dir      = path.join(process.cwd(), dist),
-                json     = processJson(this[v], form, goods),
-                css      = `
-                    @import "../sources/common";
-
-                    #container {
-                      width: ${v}px;
-                    }
-                `,
-                html     = `<div id="container"></div>`,
-                fileName = `${file.relative.split('.')[0]}-${v}`;
-            fs.writeFile(`${dir}/${fileName}.html`, iconv.encode(html, 'utf-8'), null);
-            fs.writeFile(`${dir}/${fileName}.scss`, iconv.encode(css, 'utf-8'), null);
-            fs.writeFile(`${dir}/${fileName}.json`, iconv.encode(JSON.stringify(json, null, 2), 'utf-8'), null);
+            tpls[v] = processJson(this[v], form, goods);
         }, tempaltes);
 
-        // 删除文件
-        rimraf(file.path, function (err) {
-            err && this.emit('error', new gutil.PluginError('gulp-create', err));
-
-            file.contents = new Buffer(JSON.stringify(content));
-            cb(null, file);
-        });
+        file.contents = new Buffer(JSON.stringify(tpls, null, 2));
+        cb(null, file);
     })
 };

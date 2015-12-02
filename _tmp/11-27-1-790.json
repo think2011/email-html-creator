@@ -9,7 +9,7 @@
       "subTitle": {
         "type": "string",
         "title": "子标题",
-        "default": "周末促销周末促销"
+        "default": "周末各种特色大促销"
       },
       "color": {
         "type": "string",
@@ -32,6 +32,10 @@
         "type": "text"
       },
       {
+        "key": "subTitle",
+        "type": "text"
+      },
+      {
         "key": "color",
         "type": "zyColorSelector"
       }
@@ -39,114 +43,114 @@
   },
   "tpl": {
     "title": "周末促销",
-    "color": "#ff6b1b",
-    "subTitle": "周末促销周末促销周末促销"
+    "subTitle": "周末各种特色大促销",
+    "color": "#ff6b1b"
   },
   "items": [
     [
       {
-        "title": "SHERRY小玉酱2015秋冬麻花流苏",
+        "title": "SHERRY小玉",
         "label": "促销",
-        "price": "1475.06",
-        "price_a": "1475",
-        "price_b": "06",
-        "promoPrice": "2438.16",
-        "promoPrice_a": "2438",
-        "promoPrice_b": "16",
-        "soldQuantity": 183,
+        "price": "1964.69",
+        "price_a": "1964",
+        "price_b": "69",
+        "promoPrice": "1691.39",
+        "promoPrice_a": "1691",
+        "promoPrice_b": "39",
+        "soldQuantity": 3390,
         "picUrl": "https://img.alicdn.com/bao/uploaded/i4/TB1uXoxKXXXXXbcXXXXXXXXXXXX_!!0-item_pic.jpg",
+        "url": "###"
+      },
+      {
+        "title": "SHERRY小玉酱2015秋冬麻",
+        "label": "促销",
+        "price": "1441.63",
+        "price_a": "1441",
+        "price_b": "63",
+        "promoPrice": "4744.14",
+        "promoPrice_a": "4744",
+        "promoPrice_b": "14",
+        "soldQuantity": 327,
+        "picUrl": "https://img.alicdn.com/bao/uploaded/i2/TB1.H9MKpXXXXasXVXXXXXXXXXX_!!0-item_pic.jpg",
         "url": "###"
       },
       {
         "title": "SHERRY小玉酱2015秋冬麻花流苏披肩围巾女士百搭",
         "label": "促销",
-        "price": "1067.78",
-        "price_a": "1067",
-        "price_b": "78",
-        "promoPrice": "3598.03",
-        "promoPrice_a": "3598",
-        "promoPrice_b": "03",
-        "soldQuantity": 2137,
-        "picUrl": "https://img.alicdn.com/bao/uploaded/i2/TB1.H9MKpXXXXasXVXXXXXXXXXX_!!0-item_pic.jpg",
-        "url": "###"
-      },
-      {
-        "title": "SHERRY小玉酱2",
-        "label": "促销",
-        "price": "2669.63",
-        "price_a": "2669",
-        "price_b": "63",
-        "promoPrice": "4894.24",
-        "promoPrice_a": "4894",
-        "promoPrice_b": "24",
-        "soldQuantity": 2806,
+        "price": "64.92",
+        "price_a": "64",
+        "price_b": "92",
+        "promoPrice": "2504.77",
+        "promoPrice_a": "2504",
+        "promoPrice_b": "77",
+        "soldQuantity": 676,
         "picUrl": "https://img.alicdn.com/bao/uploaded/i1/TB10wJkKpXXXXcIaXXXXXXXXXXX_!!0-item_pic.jpg",
         "url": "###"
       },
       {
         "title": "SHERRY小玉酱2",
         "label": "促销",
-        "price": "1223.52",
-        "price_a": "1223",
-        "price_b": "52",
-        "promoPrice": "1670.35",
-        "promoPrice_a": "1670",
+        "price": "3627.34",
+        "price_a": "3627",
+        "price_b": "34",
+        "promoPrice": "290.35",
+        "promoPrice_a": "290",
         "promoPrice_b": "35",
-        "soldQuantity": 3526,
+        "soldQuantity": 3573,
         "picUrl": "https://img.alicdn.com/bao/uploaded/i3/TB1BwiOKpXXXXaMXFXXXXXXXXXX_!!0-item_pic.jpg",
         "url": "###"
       }
     ],
     [
       {
-        "title": "SHERRY小玉酱2015秋冬麻花流苏",
+        "title": "SHERRY小玉",
         "label": "促销",
-        "price": "1475.06",
-        "price_a": "1475",
-        "price_b": "06",
-        "promoPrice": "2438.16",
-        "promoPrice_a": "2438",
-        "promoPrice_b": "16",
-        "soldQuantity": 183,
+        "price": "1964.69",
+        "price_a": "1964",
+        "price_b": "69",
+        "promoPrice": "1691.39",
+        "promoPrice_a": "1691",
+        "promoPrice_b": "39",
+        "soldQuantity": 3390,
         "picUrl": "https://img.alicdn.com/bao/uploaded/i4/TB1uXoxKXXXXXbcXXXXXXXXXXXX_!!0-item_pic.jpg",
+        "url": "###"
+      },
+      {
+        "title": "SHERRY小玉酱2015秋冬麻",
+        "label": "促销",
+        "price": "1441.63",
+        "price_a": "1441",
+        "price_b": "63",
+        "promoPrice": "4744.14",
+        "promoPrice_a": "4744",
+        "promoPrice_b": "14",
+        "soldQuantity": 327,
+        "picUrl": "https://img.alicdn.com/bao/uploaded/i2/TB1.H9MKpXXXXasXVXXXXXXXXXX_!!0-item_pic.jpg",
         "url": "###"
       },
       {
         "title": "SHERRY小玉酱2015秋冬麻花流苏披肩围巾女士百搭",
         "label": "促销",
-        "price": "1067.78",
-        "price_a": "1067",
-        "price_b": "78",
-        "promoPrice": "3598.03",
-        "promoPrice_a": "3598",
-        "promoPrice_b": "03",
-        "soldQuantity": 2137,
-        "picUrl": "https://img.alicdn.com/bao/uploaded/i2/TB1.H9MKpXXXXasXVXXXXXXXXXX_!!0-item_pic.jpg",
-        "url": "###"
-      },
-      {
-        "title": "SHERRY小玉酱2",
-        "label": "促销",
-        "price": "2669.63",
-        "price_a": "2669",
-        "price_b": "63",
-        "promoPrice": "4894.24",
-        "promoPrice_a": "4894",
-        "promoPrice_b": "24",
-        "soldQuantity": 2806,
+        "price": "64.92",
+        "price_a": "64",
+        "price_b": "92",
+        "promoPrice": "2504.77",
+        "promoPrice_a": "2504",
+        "promoPrice_b": "77",
+        "soldQuantity": 676,
         "picUrl": "https://img.alicdn.com/bao/uploaded/i1/TB10wJkKpXXXXcIaXXXXXXXXXXX_!!0-item_pic.jpg",
         "url": "###"
       },
       {
         "title": "SHERRY小玉酱2",
         "label": "促销",
-        "price": "1223.52",
-        "price_a": "1223",
-        "price_b": "52",
-        "promoPrice": "1670.35",
-        "promoPrice_a": "1670",
+        "price": "3627.34",
+        "price_a": "3627",
+        "price_b": "34",
+        "promoPrice": "290.35",
+        "promoPrice_a": "290",
         "promoPrice_b": "35",
-        "soldQuantity": 3526,
+        "soldQuantity": 3573,
         "picUrl": "https://img.alicdn.com/bao/uploaded/i3/TB1BwiOKpXXXXaMXFXXXXXXXXXX_!!0-item_pic.jpg",
         "url": "###"
       }
