@@ -18,6 +18,14 @@ table {
 
 }
 
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -94,6 +102,10 @@ a {
   }
   .m-l-o-#{$i} {
     margin-left: #{-$i}px;
+  }
+
+  .f-s-#{$i} {
+    font-size: #{$i}px;
   }
 
   .p-t-#{$i} {

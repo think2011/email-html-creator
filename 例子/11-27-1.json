@@ -4,15 +4,13 @@
       "type": "flow",
       "maxTr": 12,
       "maxTd": 3,
-      "_picWidth": 200,
-      "_picHeight": 200
+      "_picSize": 240
     },
     "990": {
       "type": "flow",
       "maxTr": 12,
       "maxTd": 4,
-      "_picWidth": 240,
-      "_picHeight": 240
+      "_picSize": 240
     }
   },
   "表单定义": {

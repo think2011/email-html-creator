@@ -16,8 +16,7 @@ module.exports = function (jsonDir) {
                 size     = jsonFile[v].size;
 
             // 更新对应size
-            _content = _content.replace(/\{\{size\._picWidth}}/g, size._picWidth);
-            _content = _content.replace(/\{\{size\._picHeight}}/g, size._picHeight);
+            _content = _content.replace(/\{\{size\._picSize}}/g, size._picSize);
 
             rst.push(`
             <textarea data-tpl-size="${v}">

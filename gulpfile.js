@@ -99,9 +99,9 @@ gulp.task('build', function () {
 });
 
 
-gulp.task('default', ['dev:clean', 'dev', 'server'], function () {
+gulp.task('default', ['dev:clean', 'dev:sass', 'dev:json', 'dev', 'server'], function () {
     plugins.watch(`${paths.src}/*.*`, () => {
-        gulp.start(['dev']);
+        gulp.start('dev');
     });
 });
 
