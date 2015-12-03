@@ -1,10 +1,11 @@
-var through = require('through2'),
-    gutil   = require('gulp-util'),
-    fs      = require('fs'),
-    path    = require('path'),
-    jsdom   = require("jsdom"),
-    iconv   = require('iconv-lite'),
-    rimraf  = require('rimraf');
+var through    = require('through2'),
+    gutil      = require('gulp-util'),
+    fs         = require('fs'),
+    path       = require('path'),
+    jsdom      = require("jsdom"),
+    handlebars = require('handlebars'),
+    iconv      = require('iconv-lite'),
+    rimraf     = require('rimraf');
 
 
 module.exports = function (jsonDir, dist) {
@@ -15,11 +16,12 @@ module.exports = function (jsonDir, dist) {
             targetDir = path.join(process.cwd(), dist);
 
         Object.keys(jsonFile).forEach(v => {
-            var document    = jsdom.jsdom(content),
-                newHtmlFile = path.join(targetDir, `${file.relative.split('.')[0]}-${v}.html`);
+            var document   = jsdom.jsdom(content),
+                newHbsFile = path.join(targetDir, `${file.relative.split('.')[0]}-${v}.hbs`),
+                hbs        = document.querySelector(`[data-tpl-size="${v}"]`).innerHTML;
 
-            // 创建html
-            fs.writeFileSync(newHtmlFile, document.querySelector(`[data-tpl-size="${v}"]`).innerHTML);
+            // 创建hbs
+            fs.writeFileSync(newHbsFile, hbs);
 
             var json        = {
                     def_val     : {},
@@ -37,6 +39,23 @@ module.exports = function (jsonDir, dist) {
 
             // 创建json
             fs.writeFileSync(newJsonFile, JSON.stringify(json, null, 2));
+
+
+            var html        = `
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>模板预览 ${file.relative.split('.')[0]}-${v}</title>
+</head>
+    <body>
+    ${hbs}
+    </body>
+</html>`;
+            var newHtmlFile = path.join(targetDir, `${file.relative.split('.')[0]}-${v}.html`);
+
+            // 创建html预览
+            fs.writeFileSync(newHtmlFile, handlebars.compile(html)(jsonTpl));
         });
 
         cb(null, file);
