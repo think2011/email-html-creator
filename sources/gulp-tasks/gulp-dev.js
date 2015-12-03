@@ -29,9 +29,6 @@ module.exports = function (jsonDir) {
         });
 
         file.contents = new Buffer(rst.join(''));
-
-        setTimeout(function () {
-            cb(null, file);
-        }, 300);
+        cb(null, file);
     })
 };

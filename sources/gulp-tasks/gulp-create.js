@@ -51,6 +51,44 @@ var createGoodsObj = function (goodsObj) {
     return temp;
 };
 
+var createJsonForm = function (formDefine, skipTags) {
+    var form   = {
+            schema: {},
+            form  : []
+        },
+        simple = {};
+
+    Object.keys(formDefine).forEach(v => {
+        // 跳过忽略字段
+        if (skipTags && skipTags.indexOf(v) !== -1) return;
+
+        var formValue = formDefine[v];
+
+        // 生成form
+        form.schema[v] = {
+            type   : formValue.type,
+            title  : formValue.desc,
+            default: formValue.default
+        };
+
+        // 针对类型不同作处理
+        if (Array.isArray(formValue.default)) {
+            form.schema[v].enum    = formValue.default;
+            form.schema[v].default = form.schema[v].enum[0];
+        }
+
+        form.form.push({
+            key : v,
+            type: formValue.fn
+        });
+
+        // 生成模板
+        simple[v] = Array.isArray(formValue.default) ? formValue.default[0] : formValue.default;
+    });
+
+    return [form, simple];
+};
+
 var processJson = function (template, form, goods) {
     var json       = {
             size : {},
@@ -88,29 +126,21 @@ var processJson = function (template, form, goods) {
             }
     }
 
-    Object.keys(form).forEach(v => {
-        var formValue = form[v];
+    var formObj = createJsonForm(form);
 
-        // 生成form
-        json.form.schema[v] = {
-            type   : formValue.type,
-            title  : formValue.desc,
-            default: formValue.default
-        };
+    json.form = formObj[0];
+    json.tpl  = formObj[1];
 
-        if (Array.isArray(formValue.default)) {
-            json.form.schema[v].enum    = formValue.default;
-            json.form.schema[v].default = json.form.schema[v].enum[0];
-        }
+    var goodsObj = createJsonForm(goods, [
+        'title',
+        'price_a',
+        'price_b',
+        'promoPrice_a',
+        'promoPrice_b'
+    ]);
 
-        json.form.form.push({
-            key : v,
-            type: formValue.fn
-        });
-
-        // 生成模板
-        json.tpl[v] = Array.isArray(formValue.default) ? formValue.default[0] : formValue.default;
-    });
+    json.itemForm = goodsObj[0];
+    json.item     = goodsObj[1];
 
     return json;
 };
