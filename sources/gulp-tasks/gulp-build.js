@@ -228,16 +228,31 @@ handlebars.registerHelper('encode', function (str) {
 });
 
 
-module.exports = function (jsonDir, dist) {
+module.exports = function (srcDir, jsonDir, dist) {
     return through.obj(function (file, enc, cb) {
-        var content   = file.contents.toString(),
-            json      = path.join(process.cwd(), jsonDir, `${file.relative.split('.')[0]}.json`),
-            jsonFile  = JSON.parse(fs.readFileSync(json).toString()),
-            targetDir = path.join(process.cwd(), dist);
+        var content  = file.contents.toString(),
+            fileName = file.relative.split('.')[0],
+            json     = path.join(process.cwd(), jsonDir, `${fileName}.json`),
+            jsonFile = JSON.parse(fs.readFileSync(json).toString());
+
+        // 创建文件夹
+        var newTplDir       = path.join(process.cwd(), dist, `${fileName}`),
+            newCodeDir      = `${newTplDir}/src`,
+            srcCodeFileName = path.join(process.cwd(), srcDir, `${fileName}`);
+
+        if (!fs.existsSync(newTplDir)) {
+            fs.mkdirSync(newTplDir);
+            fs.mkdirSync(newCodeDir);
+        }
+
+        // 拷贝源代码
+        fs.writeFileSync(`${newCodeDir}/${fileName}.html`, fs.readFileSync(`${srcCodeFileName}.html`));
+        fs.writeFileSync(`${newCodeDir}/${fileName}.json`, fs.readFileSync(`${srcCodeFileName}.json`));
+        fs.writeFileSync(`${newCodeDir}/${fileName}.scss`, fs.readFileSync(`${srcCodeFileName}.scss`));
 
         Object.keys(jsonFile).forEach(v => {
             var document   = jsdom.jsdom(content),
-                newHbsFile = path.join(targetDir, `${file.relative.split('.')[0]}-${v}.hbs`),
+                newHbsFile = path.join(newTplDir, `${fileName}-${v}.hbs`),
                 hbs        = document.querySelector(`[data-tpl-size="${v}"]`).innerHTML;
 
             // 创建hbs
@@ -250,7 +265,7 @@ module.exports = function (jsonDir, dist) {
                     item_form   : {}
                 },
                 jsonTpl     = jsonFile[v],
-                newJsonFile = path.join(targetDir, `${file.relative.split('.')[0]}-${v}.json`);
+                newJsonFile = path.join(newTplDir, `${fileName}-${v}.json`);
 
             json.def_val      = jsonTpl.tpl;
             json.form_def     = jsonTpl.form;
@@ -266,13 +281,13 @@ module.exports = function (jsonDir, dist) {
 <html lang="zh-cn">
 <head>
 	<meta charset="UTF-8">
-	<title>模板预览 ${file.relative.split('.')[0]}-${v}</title>
+	<title>模板预览 ${fileName}-${v}</title>
 </head>
     <body>
     ${hbs}
     </body>
 </html>`;
-            var newHtmlFile = path.join(targetDir, `${file.relative.split('.')[0]}-${v}.html`);
+            var newHtmlFile = path.join(newTplDir, `${fileName}-${v}.html`);
 
             // 创建html预览
             fs.writeFileSync(newHtmlFile, handlebars.compile(html)(jsonTpl));

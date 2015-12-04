@@ -101,7 +101,7 @@ gulp.task('dev:clean', function () {
 gulp.task('build', function () {
     return gulp.src(`${paths.dist}/*.html`)
         .pipe(plugins.minifyHtml())
-        .pipe(build(paths.dist, paths.build));
+        .pipe(build(paths.src, paths.dist, paths.build));
 });
 
 
