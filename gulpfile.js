@@ -77,18 +77,20 @@ gulp.task('dev:sass', function () {
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('dev:json', function () {
-    return gulp.src(`${paths.src}/*.json`)
+gulp.task('dev:json', function (cb) {
+    gulp.src(`${paths.src}/*.json`)
         .pipe(plugins.plumber())
         .pipe(create())
-        .pipe(gulp.dest(paths.dist));
+        .pipe(gulp.dest(paths.dist))
+        .on('end', cb);
 });
 
 
 // 清空内容
-gulp.task('dev:clean', function () {
-    return gulp.src(`${paths.dist}/*.*`)
+gulp.task('dev:clean', function (cb) {
+    gulp.src(`${paths.dist}/*.*`)
         .pipe(plugins.clean())
+        .on('end', cb);
 });
 
 
@@ -99,7 +101,7 @@ gulp.task('build', function () {
 });
 
 
-gulp.task('default', ['dev:clean', 'dev:sass', 'dev:json', 'dev', 'server'], function () {
+gulp.task('default', ['dev:clean', 'dev:json', 'dev:sass', 'dev', 'server'], function () {
     plugins.watch(`${paths.src}/*.*`, () => {
         gulp.start('dev');
     });
