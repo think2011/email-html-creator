@@ -39,11 +39,17 @@ gulp.task('dev', ['dev:json', 'dev:sass'], function () {
         // 插入样式
         .pipe(insertLink())
 
+        // 保护style内的变量
+        .pipe(ensureVarStyle())
+
         // decodeHTML
         .pipe(decodeHtml())
 
         // 样式转内联
         .pipe(plugins.inlineCss())
+
+        // 恢复style内的变量
+        .pipe(recoveryVarStyle())
 
         // 生成对应script
         .pipe(plugins.dom(function () {
@@ -135,6 +141,29 @@ function decodeHtml () {
             content  = file.contents.toString();
 
         file.contents = new Buffer(entities.decode(content));
+        cb(null, file);
+    })
+}
+
+function ensureVarStyle () {
+    return through.obj(function (file, enc, cb) {
+        var content = file.contents.toString();
+
+        content = content.replace(/{{((.+)color)}}/g, 'VER:$1:VER');
+
+        file.contents = new Buffer(content);
+        cb(null, file);
+    })
+}
+
+function recoveryVarStyle () {
+    return through.obj(function (file, enc, cb) {
+        var content = file.contents.toString();
+
+        content = content.replace(/VER:/g, '{{');
+        content = content.replace(/:VER/g, '}}');
+
+        file.contents = new Buffer(content);
         cb(null, file);
     })
 }
