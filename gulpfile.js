@@ -149,7 +149,7 @@ function ensureVarStyle () {
     return through.obj(function (file, enc, cb) {
         var content = file.contents.toString();
 
-        content = content.replace(/{{((.+)color)}}/g, 'VER:$1:VER');
+        content = content.replace(/\{\{(.+?)}}/g, 'VER:$1:VER');
 
         file.contents = new Buffer(content);
         cb(null, file);
@@ -160,8 +160,8 @@ function recoveryVarStyle () {
     return through.obj(function (file, enc, cb) {
         var content = file.contents.toString();
 
-        content = content.replace(/VER:/g, '{{');
-        content = content.replace(/:VER/g, '}}');
+        content = content.replace(/VER:/ig, '{{');
+        content = content.replace(/:VER/ig, '}}');
 
         file.contents = new Buffer(content);
         cb(null, file);
