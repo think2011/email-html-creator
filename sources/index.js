@@ -33,13 +33,13 @@ $(function () {
     function render (size, json) {
         var html     = $('[data-tpl-size="' + size + '"]').html(),
             template = Handlebars.compile(html)(json),
-            $tpl     = $('#tpl-' + size);
+            $tpl     = $('#___' + size + '___');
 
 
         if ($tpl.length !== 0) {
             $tpl.html(template);
         } else {
-            var $el = $('<div id="tpl-' + size + '"></div>');
+            var $el = $('<div id="___' + size + '___"></div>');
             $('body').append(`<div class="hr-desc"><span>${size}</span></div>`).append($el);
 
             render(size, json);
@@ -193,7 +193,7 @@ Handlebars.registerHelper('lte', function (left, right, options) {
 
 // 判断一个整数是否为偶数
 Handlebars.registerHelper('even', function (num, options) {
-    if (arguments.length !== 2 ) {
+    if (arguments.length !== 2) {
         throw new Error('helper "even" needs 1 argument');
     }
     if (num % 2 === 0) {
@@ -206,7 +206,7 @@ Handlebars.registerHelper('even', function (num, options) {
 
 // 判断一个整数是否为奇数
 Handlebars.registerHelper('odd', function (num, options) {
-    if (arguments.length !== 2 ) {
+    if (arguments.length !== 2) {
         throw new Error('helper "odd" needs 1 argument');
     }
     if (num % 2 === 1) {
@@ -223,7 +223,7 @@ Handlebars.registerHelper('odd', function (num, options) {
  * @param base {number} 被比较的因子
  **/
 Handlebars.registerHelper('multiple', function (num, base, options) {
-    if (arguments.length !== 3 ) {
+    if (arguments.length !== 3) {
         throw new Error('helper "multiple" needs 2 arguments');
     }
     if (num % base === 0) {
@@ -236,12 +236,12 @@ Handlebars.registerHelper('multiple', function (num, base, options) {
 
 // 多个变量求并&&, 可变长参数
 Handlebars.registerHelper('and', function () {
-    if (arguments.length <= 2 ) {
+    if (arguments.length <= 2) {
         throw new Error('helper "and" need at least 2 arguments');
     }
     var options = arguments[arguments.length - 1];
-    var items = [].slice.call(arguments, 0, arguments.length - 1);
-    var result = items.reduce(function (memo, item) {
+    var items   = [].slice.call(arguments, 0, arguments.length - 1);
+    var result  = items.reduce(function (memo, item) {
         return memo && item;
     });
     if (result) {
@@ -253,13 +253,13 @@ Handlebars.registerHelper('and', function () {
 
 // 多个变量求或||, 可变长参数
 Handlebars.registerHelper('or', function () {
-    if (arguments.length <= 2 ) {
+    if (arguments.length <= 2) {
         throw new Error('helper "or" need at least 2 arguments');
     }
 
     var options = arguments[arguments.length - 1];
-    var items = [].slice.call(arguments, 0, arguments.length - 1);
-    var result = items.reduce(function (memo, item) {
+    var items   = [].slice.call(arguments, 0, arguments.length - 1);
+    var result  = items.reduce(function (memo, item) {
         return memo || item;
     });
     if (result) {

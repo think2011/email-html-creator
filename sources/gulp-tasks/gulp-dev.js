@@ -20,7 +20,7 @@ module.exports = function (jsonDir) {
 
             rst.push(`
             <textarea data-tpl-size="${v}">
-                <div style="width: ${v}px;" class="container">
+                <div id="tpl-${v}" style="width: ${v}px;" class="container">
                     ${_content}
                 </div>
                 </textarea>
