@@ -255,6 +255,9 @@ module.exports = function (srcDir, jsonDir, dist) {
                 newHbsFile = path.join(newTplDir, `${fileName}-${v}.hbs`),
                 hbs        = document.querySelector(`[data-tpl-size="${v}"]`).innerHTML;
 
+            // 清除掉class
+            hbs = hbs.replace(/\sclass="(.*?)"/g, '');
+
             // 创建hbs
             fs.writeFileSync(newHbsFile, hbs);
 
