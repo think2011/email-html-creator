@@ -132,7 +132,6 @@ var processJson = function (template, form, goods) {
     json.tpl  = formObj[1];
 
     var goodsObj = createJsonForm(goods, [
-        'title',
         'price_a',
         'price_b',
         'promoPrice_a',
