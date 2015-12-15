@@ -48,7 +48,7 @@ gulp.task('dev', ['dev:json', 'dev:sass'], function () {
         // 样式转内联
         .pipe(plugins.inlineCss())
 
-        // 恢复style内的变量
+        // 恢复style内的变量 & 将td中style里的url转到td属性上
         .pipe(recoveryVarStyle())
 
         // 生成对应script
@@ -120,7 +120,7 @@ function insertLink () {
                 var document = window.document,
                     link     = document.createElement('link');
 
-                link.rel = 'stylesheet';
+                link.rel  = 'stylesheet';
                 link.href = `../dist/${fileName}.css`;
                 document.querySelector('head').appendChild(link);
 
@@ -162,6 +162,16 @@ function recoveryVarStyle () {
 
         content = content.replace(/VER:/ig, '{{');
         content = content.replace(/:VER/ig, '}}');
+
+        content = content.replace(/<td .*(style=".*?.*url\((.*)\).*".*)>/g, function (td, style, url) {
+            // 移动url到td background
+            td = td.replace(style, `background="${url}" $&`);
+
+            // 清空style中的background
+            td = td.replace(/url\(.*?\)/g, '');
+
+            return td;
+        });
 
         file.contents = new Buffer(content);
         cb(null, file);
