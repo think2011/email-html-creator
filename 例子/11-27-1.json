@@ -66,35 +66,11 @@
       "desc": "价格标签",
       "default": "特惠价"
     },
-    "price_a": {
-      "type": "string",
-      "fn": "text",
-      "desc": "原价_整数部分",
-      "default": "188"
-    },
-    "price_b": {
-      "type": "string",
-      "fn": "text",
-      "desc": "原价_小数部分",
-      "default": "00"
-    },
     "promoPrice": {
       "type": "string",
       "fn": "text",
       "desc": "促销价",
       "default": 166.00
-    },
-    "promoPrice_a": {
-      "type": "string",
-      "fn": "text",
-      "desc": "促销价_整数部分",
-      "default": "166"
-    },
-    "promoPrice_b": {
-      "type": "string",
-      "fn": "text",
-      "desc": "促销价_小数部分",
-      "default": "00"
     },
     "soldQuantity": {
       "type": "string",

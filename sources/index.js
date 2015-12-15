@@ -216,7 +216,6 @@ Handlebars.registerHelper('odd', function (num, options) {
     }
 });
 
-
 /**
  * 判断一个整数是否为制定数字的整数倍
  * @param num {number} 需要判断的数字
@@ -277,4 +276,29 @@ Handlebars.registerHelper('stringify', function (obj) {
 // 使用encodeURIComponent转义字符串
 Handlebars.registerHelper('encode', function (str) {
     return encodeURIComponent(str);
+});
+
+
+/**
+ * 把根据参数返回数字的整数和小数部分
+ */
+Handlebars.registerHelper("toFixed", function (number, params) {
+    if (isNaN(+number)) {
+        throw new Error('arguments must be a number');
+    }
+
+    var rst = ((+number).toFixed(2)).split('.');
+
+    switch (params) {
+        case 0:
+            return rst[0];
+            break;
+
+        case 1:
+            return rst[1];
+            break;
+
+        default:
+            return +number;
+    }
 });
