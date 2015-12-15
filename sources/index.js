@@ -281,6 +281,10 @@ Handlebars.registerHelper('encode', function (str) {
 
 /**
  * 把根据参数返回数字的整数和小数部分
+ * @example
+ * price = 10010.20
+ * {{toFixed price 0}} => 10010
+ * {{toFixed price 1}} => 20
  */
 Handlebars.registerHelper("toFixed", function (number, params) {
     if (isNaN(+number)) {
