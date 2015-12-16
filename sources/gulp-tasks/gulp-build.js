@@ -227,6 +227,34 @@ handlebars.registerHelper('encode', function (str) {
     return encodeURIComponent(str);
 });
 
+/**
+ * 把根据参数返回数字的整数和小数部分
+ * @example
+ * price = 10010.20
+ * {{toFixed price 0}} => 10010
+ * {{toFixed price 1}} => 20
+ */
+Handlebars.registerHelper("toFixed", function (number, params) {
+    if (isNaN(+number)) {
+        throw new Error('arguments must be a number');
+    }
+
+    var rst = ((+number).toFixed(2)).split('.');
+
+    switch (params) {
+        case 0:
+            return rst[0];
+            break;
+
+        case 1:
+            return rst[1];
+            break;
+
+        default:
+            return +number;
+    }
+});
+
 
 module.exports = function (srcDir, jsonDir, dist) {
     return through.obj(function (file, enc, cb) {
@@ -263,7 +291,7 @@ module.exports = function (srcDir, jsonDir, dist) {
 
             var json        = {
                     def_val     : {},
-                    form_def: {},
+                    form_def    : {},
                     item_def_val: {},
                     item_form   : {}
                 },
