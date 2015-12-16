@@ -234,7 +234,7 @@ handlebars.registerHelper('encode', function (str) {
  * {{toFixed price 0}} => 10010
  * {{toFixed price 1}} => 20
  */
-Handlebars.registerHelper("toFixed", function (number, params) {
+handlebars.registerHelper("toFixed", function (number, params) {
     if (isNaN(+number)) {
         throw new Error('arguments must be a number');
     }
