@@ -163,7 +163,14 @@ function recoveryVarStyle () {
         content = content.replace(/VER:/ig, '{{');
         content = content.replace(/:VER/ig, '}}');
 
-        content = content.replace(/<td .*(style=".*?.*url\((.*)\).*".*)>/g, function (td, style, url) {
+        content = content.replace(/<table .*(style=".*?.*url\((.*)\).*".*)>/g, replaceCallBack);
+        content = content.replace(/<tr .*(style=".*?.*url\((.*)\).*".*)>/g, replaceCallBack);
+        content = content.replace(/<td .*(style=".*?.*url\((.*)\).*".*)>/g, replaceCallBack);
+
+        file.contents = new Buffer(content);
+        cb(null, file);
+
+        function replaceCallBack (td, style, url) {
             // 移动url到td background
             td = td.replace(style, `background="${url}" $&`);
 
@@ -171,9 +178,6 @@ function recoveryVarStyle () {
             td = td.replace(/url\(.*?\)/g, '');
 
             return td;
-        });
-
-        file.contents = new Buffer(content);
-        cb(null, file);
+        }
     })
 }
