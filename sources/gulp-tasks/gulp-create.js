@@ -35,8 +35,8 @@ var createGoodsObj = function (goodsObj) {
         title       : goodsObj.title.slice(0, rand(5, goodsObj.title.length)),
         picUrl      : imgs.shift(),
         url         : 'http://taobao.com',
-        price       : rand(1, 30000, true),
-        promoPrice  : rand(1, 30000, true),
+        price       : rand(1, 12000, true),
+        promoPrice  : rand(1, 12000, true),
         soldQuantity: rand(1, 3000)
     });
 
