@@ -290,18 +290,18 @@ module.exports = function (srcDir, jsonDir, dist) {
             fs.writeFileSync(newHbsFile, hbs);
 
             var json        = {
-                    def_val     : {},
-                    form_def    : {},
-                    item_def_val: {},
-                    item_form   : {}
+                    tplDefultVal  : {},
+                    tplform       : {},
+                    itemDefaultVal: {},
+                    itemForm      : {}
                 },
                 jsonTpl     = jsonFile[v],
                 newJsonFile = path.join(newTplDir, `${fileName}-${v}.json`);
 
-            json.def_val      = jsonTpl.tpl;
-            json.form_def     = jsonTpl.form;
-            json.item_def_val = jsonTpl.item;
-            json.item_form    = jsonTpl.itemForm;
+            json.tplDefultVal   = jsonTpl.tpl;
+            json.tplform        = jsonTpl.form;
+            json.itemDefaultVal = jsonTpl.item;
+            json.itemForm       = jsonTpl.itemForm;
 
             // 创建json
             fs.writeFileSync(newJsonFile, JSON.stringify(json, null, 2));
