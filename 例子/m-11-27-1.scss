@@ -1,1 +1,63 @@
 @import "../sources/m-common";
+
+.tpl-container {
+  background: #f61948;
+
+  .banner {
+    img {
+      width: px2rem(750);
+      height: px2rem(343);
+    }
+  }
+
+  .items {
+    white-space: nowrap;
+    text-align: justify;
+
+    .item {
+      width: px2rem(370);
+      margin-bottom: px2rem(15);
+      display: inline-block;
+      color: #fff;
+
+      img {
+        width: px2rem(370);
+        margin-bottom: px2rem(10);
+      }
+
+      .desc {
+        margin: 0 px2rem(12);
+
+        .price, .btn, .title {
+          font-size: 12px;
+        }
+
+        .title {
+          width: 100%;
+          text-align: center;
+          margin-bottom: px2rem(10);
+        }
+
+        .price {
+          font-size: px2rem(23);
+          float: left;
+          color: #fff7a0;
+          margin-top: px2rem(12);
+
+          b {
+            font-size: px2rem(27);
+          }
+        }
+
+        .btn {
+          color: #c61010;
+          border-radius: px2rem(15);
+          padding: 3px 5px;
+          float: right;
+          background: #fff7a0;
+        }
+      }
+
+    }
+  }
+}
