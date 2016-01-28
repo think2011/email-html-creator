@@ -312,7 +312,15 @@ module.exports = function (srcDir, jsonDir, dist) {
 <html lang="zh-cn">
 <head>
 	<meta charset="UTF-8">
+	<meta name="hotcss" content="initial-dpr=1">
 	<title>模板预览 ${fileName}-${v}</title>
+	<script src="../../sources/libs/hotcss.js"></script>
+	<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+</style>
 </head>
     <body>
     ${hbs}

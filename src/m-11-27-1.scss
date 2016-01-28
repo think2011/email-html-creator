@@ -1,8 +1,54 @@
-@import "../sources/common";
+@import "../sources/m-common";
 
-$designWidth: 750; //写scss之前，必须要先定义designWidth。
+.tpl-container {
+  background: #f61948;
 
-body {
-  width: 16rem;
-  margin: 0 auto;
+  .banner {
+    img {
+      width: px2rem(750);
+      height: px2rem(343);
+    }
+  }
+
+  .items {
+    white-space: nowrap;
+    text-align: justify;
+
+    .item {
+      width: px2rem(370);
+      margin-bottom: px2rem(15);
+      display: inline-block;
+      color: #fff;
+
+      img {
+        width: px2rem(370);
+      }
+
+      .desc {
+        margin: 0 px2rem(5);
+
+        .price, .btn, .title {
+          font-size: 12px;
+        }
+
+        .title {
+          width: 100%;
+          text-align: center;
+        }
+
+        .price {
+          font-size: px2rem(23);
+          color: #fff7a0;
+        }
+
+        .btn {
+          color: #c61010;
+          border-radius: px2rem(15);
+          padding: 3px 5px;
+          background: #fff7a0;
+        }
+      }
+
+    }
+  }
 }

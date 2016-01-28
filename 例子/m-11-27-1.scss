@@ -1,8 +1,1 @@
-@import "../sources/common";
-
-$designWidth: 750; //写scss之前，必须要先定义designWidth。
-
-body {
-  width: 16rem;
-  margin: 0 auto;
-}
+@import "../sources/m-common";

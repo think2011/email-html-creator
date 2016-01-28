@@ -15,12 +15,14 @@ module.exports = function (jsonDir) {
             var _content = content,
                 size     = jsonFile[v].size;
 
+            var tplWidth = jsonFile[v].isMobile ? v + 'px' : 'auto';
+
             // 更新对应size
             _content = _content.replace(/\{\{size\._picSize}}/g, size._picSize);
 
             rst.push(`
             <textarea data-tpl-size="${v}">
-                <div id="tpl-${v}" style="width: ${v}px;" class="container">
+                <div id="tpl-${v}" style="width: ${tplWidth};" class="container">
                     ${_content}
                 </div>
                 </textarea>

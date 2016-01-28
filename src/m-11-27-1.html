@@ -1,0 +1,24 @@
+<div class="tpl-container">
+    <div class="banner">
+        <img src="https://img.alicdn.com/imgextra/i3/92779311/TB21LZnjVXXXXcYXXXXXXXXXXXX-92779311.png" alt="">
+    </div>
+
+    {{#each items}}
+        <ul class="items">
+            {{#each this}}
+                <li class="item">
+                    <a href="{{url}}" target="_blank">
+                        <img src="{{picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg" alt="">
+                    </a>
+
+                    <div class="desc">
+                        <h4 class="title">{{title}}</h4>
+
+                        <span class="price">￥{{price}}</span>
+                        <a class="btn" href="{{url}}" target="_blank">理解抢购</a>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    {{/each}}
+</div>

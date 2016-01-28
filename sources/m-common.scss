@@ -1,0 +1,29 @@
+@function px2rem( $px ) {
+  @return $px*320/$designWidth/20 + rem;
+}
+
+$designWidth: 750; //写scss之前，必须要先定义designWidth。
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  list-style: none;
+}
+
+body {
+  width: 16rem;
+  margin: 0 auto;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
