@@ -1,5 +1,10 @@
 @import "normalize";
 
+// form px2rem.scss
+@function px2rem( $px ) {
+  @return $px*320/$designWidth/20 + rem;
+}
+
 .container {
   overflow: hidden;
   text-align: left;

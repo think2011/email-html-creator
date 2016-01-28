@@ -1,0 +1,76 @@
+{
+  "模板定义": {
+    "750": {
+      "type": "flow",
+      "maxTr": 12,
+      "maxTd": 3,
+      "_picSize": 240
+    }
+  },
+  "表单定义": {
+    "title": {
+      "type": "string",
+      "fn": "text",
+      "desc": "标题",
+      "default": "周末促销"
+    },
+    "subTitle": {
+      "type": "string",
+      "fn": "text",
+      "desc": "子标题",
+      "default": "周末各种特色大促销"
+    },
+    "color": {
+      "type": "string",
+      "fn": "zyColorSelector",
+      "desc": "颜色",
+      "default": [
+        "#ff6b1b",
+        "#ff93a7",
+        "#a9856d",
+        "#3ebba3",
+        "#fd0d62",
+        "#4bbc2c",
+        "#3385ff"
+      ]
+    }
+  },
+  "宝贝定义": {
+    "title": {
+      "type": "string",
+      "fn": "text",
+      "desc": "标题",
+      "default": "SHERRY小玉酱2015秋冬麻花流苏披肩围巾女士百搭款围脖秋"
+    },
+    "label": {
+      "type": "string",
+      "fn": "text",
+      "desc": "标签",
+      "default": "促销"
+    },
+    "price": {
+      "type": "string",
+      "fn": "text",
+      "desc": "原价",
+      "default": 188.00
+    },
+    "priceTitle": {
+      "type": "string",
+      "fn": "text",
+      "desc": "价格标签",
+      "default": "特惠价"
+    },
+    "promoPrice": {
+      "type": "string",
+      "fn": "text",
+      "desc": "促销价",
+      "default": 166.00
+    },
+    "soldQuantity": {
+      "type": "string",
+      "fn": "text",
+      "desc": "销量",
+      "default": 999
+    }
+  }
+}
