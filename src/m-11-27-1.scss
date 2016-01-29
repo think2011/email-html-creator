@@ -11,14 +11,13 @@
   }
 
   .items {
-    white-space: nowrap;
-    text-align: justify;
+    display: flex;
+    justify-content: space-between;
 
     .item {
       width: px2rem(370);
-      margin-bottom: px2rem(15);
-      display: inline-block;
       color: #fff;
+      margin-bottom: px2rem(10);
 
       img {
         width: px2rem(370);
@@ -34,18 +33,20 @@
 
         .title {
           width: 100%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
           text-align: center;
           margin-bottom: px2rem(10);
         }
 
         .price {
-          font-size: px2rem(23);
           float: left;
           color: #fff7a0;
-          margin-top: px2rem(12);
+          font-size: 12px;
+          margin-top: px2rem(5);
 
           b {
-            font-size: px2rem(27);
+            font-size: 14px;
           }
         }
 
