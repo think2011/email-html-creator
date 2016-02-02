@@ -306,6 +306,12 @@ module.exports = function (srcDir, jsonDir, dist) {
             // 创建json
             fs.writeFileSync(newJsonFile, JSON.stringify(json, null, 2));
 
+            var tplWidth = jsonTpl.size.isMobile && `
+            body {
+                width:16rem;
+                margin: 0 auto;
+            }
+            `;
 
             var html        = `
 <!DOCTYPE html>
@@ -320,6 +326,8 @@ module.exports = function (srcDir, jsonDir, dist) {
         margin: 0;
         padding: 0;
     }
+    ${tplWidth}
+
 </style>
 </head>
     <body>
