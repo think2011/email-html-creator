@@ -1,14 +1,15 @@
-var gulp        = require('gulp'),
-    path        = require('path'),
-    fs          = require('fs'),
-    jsdom       = require("jsdom"),
-    through     = require('through2'),
-    create      = require('./sources/gulp-tasks/gulp-create'),
-    build       = require('./sources/gulp-tasks/gulp-build'),
-    dev         = require('./sources/gulp-tasks/gulp-dev'),
-    Entities    = require('html-entities').AllHtmlEntities,
-    plugins     = require('gulp-load-plugins')(),
-    browserSync = require('browser-sync').create();
+var gulp             = require('gulp'),
+    path             = require('path'),
+    fs               = require('fs'),
+    jsdom            = require("jsdom"),
+    through          = require('through2'),
+    create           = require('./sources/gulp-tasks/gulp-create'),
+    build            = require('./sources/gulp-tasks/gulp-build'),
+    dev              = require('./sources/gulp-tasks/gulp-dev'),
+    Entities         = require('html-entities').AllHtmlEntities,
+    plugins          = require('gulp-load-plugins')(),
+    browserSync      = require('browser-sync').create(),
+    htmlAutoprefixer = require("html-autoprefixer");
 
 var paths = {
     src    : './src',
@@ -61,7 +62,7 @@ gulp.task('dev', ['dev:json', 'dev:sass'], function () {
 
                 script.type = 'text/x-handlebars-template';
                 script.setAttribute('data-tpl-size', size);
-                script.innerHTML = v.value;
+                script.innerHTML = htmlAutoprefixer.process(v.value);
                 document.body.appendChild(script);
 
                 v.parentNode.removeChild(v);
@@ -103,8 +104,6 @@ gulp.task('build', function () {
         .pipe(plugins.minifyHtml())
         .pipe(build(paths.src, paths.dist, paths.build));
 });
-
-
 gulp.task('default', ['dev', 'server'], function () {
     plugins.watch(`${paths.src}/*.*`, () => {
         gulp.start('dev');
