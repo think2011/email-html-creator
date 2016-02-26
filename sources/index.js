@@ -40,7 +40,7 @@ $(function () {
             $tpl.html(template);
         } else {
             var $el = $('<div id="___' + size + '___"></div>');
-            $('body').append(`<div class="hr-desc"><span>${size}</span></div>`).append($el);
+            $('body').append('<div class="hr-desc"><span>${size}</span></div>').append($el);
 
             render(size, json);
         }
