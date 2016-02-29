@@ -1,29 +1,29 @@
-var gulp             = require('gulp'),
-    path             = require('path'),
-    fs               = require('fs'),
-    jsdom            = require("jsdom"),
-    through          = require('through2'),
-    create           = require('./sources/gulp-tasks/gulp-create'),
-    build            = require('./sources/gulp-tasks/gulp-build'),
-    dev              = require('./sources/gulp-tasks/gulp-dev'),
-    Entities         = require('html-entities').AllHtmlEntities,
-    plugins          = require('gulp-load-plugins')(),
-    browserSync      = require('browser-sync').create(),
+var gulp = require('gulp'),
+    path = require('path'),
+    fs = require('fs'),
+    jsdom = require("jsdom"),
+    through = require('through2'),
+    create = require('./sources/gulp-tasks/gulp-create'),
+    build = require('./sources/gulp-tasks/gulp-build'),
+    dev = require('./sources/gulp-tasks/gulp-dev'),
+    Entities = require('html-entities').AllHtmlEntities,
+    plugins = require('gulp-load-plugins')(),
+    browserSync = require('browser-sync').create(),
     htmlAutoprefixer = require("html-autoprefixer");
 
 var paths = {
-    src    : './src',
-    dist   : './dist',
+    src: './src',
+    dist: './dist',
     sources: './sources',
-    tmp    : './_tmp',
-    build  : './build'
+    tmp: './_tmp',
+    build: './build'
 };
 
 gulp.task('server', function () {
     browserSync.init({
         server: {
             directory: true,
-            baseDir  : './'
+            baseDir: './'
         }
     });
 });
@@ -58,11 +58,15 @@ gulp.task('dev', ['dev:json', 'dev:sass'], function () {
 
             [].forEach.call(this.querySelectorAll('textarea'), function (v) {
                 var script = document.createElement('script'),
-                    size   = v.getAttribute('data-tpl-size');
+                    size = v.getAttribute('data-tpl-size');
+
+                var type = v.getAttribute('data-type');
 
                 script.type = 'text/x-handlebars-template';
                 script.setAttribute('data-tpl-size', size);
-                script.innerHTML = htmlAutoprefixer.process(v.value);
+                type === 'mobile'
+                    ? script.innerHTML = htmlAutoprefixer.process(v.value)
+                    : script.innerHTML = v.value;
                 document.body.appendChild(script);
 
                 v.parentNode.removeChild(v);
@@ -110,16 +114,16 @@ gulp.task('default', ['dev', 'server'], function () {
     });
 });
 
-function insertLink () {
+function insertLink() {
     return through.obj(function (file, enc, cb) {
         var fileName = file.relative.split('.')[0],
-            content  = file.contents.toString();
+            content = file.contents.toString();
 
         jsdom.env(content, function (err, window) {
                 var document = window.document,
-                    link     = document.createElement('link');
+                    link = document.createElement('link');
 
-                link.rel  = 'stylesheet';
+                link.rel = 'stylesheet';
                 link.href = `../dist/${fileName}.css`;
                 document.querySelector('head').appendChild(link);
 
@@ -134,33 +138,33 @@ function insertLink () {
     })
 }
 
-function decodeHtml () {
+function decodeHtml() {
     return through.obj(function (file, enc, cb) {
         var entities = new Entities(),
-            content  = file.contents.toString();
+            content = file.contents.toString();
 
         file.contents = new Buffer(entities.decode(content));
         cb(null, file);
     })
 }
 
-function ensureVarStyle () {
+function ensureVarStyle() {
     return through.obj(function (file, enc, cb) {
         var content = file.contents.toString();
 
-        content = content.replace(/\{\{(.+?)}}/g, 'VER:$1:VER');
+        content = content.replace(/\{\{(.+?)}}/g, '__-$1-__');
 
         file.contents = new Buffer(content);
         cb(null, file);
     })
 }
 
-function recoveryVarStyle () {
+function recoveryVarStyle() {
     return through.obj(function (file, enc, cb) {
         var content = file.contents.toString();
 
-        content = content.replace(/VER:/ig, '{{');
-        content = content.replace(/:VER/ig, '}}');
+        content = content.replace(/__-/ig, '{{');
+        content = content.replace(/-__/ig, '}}');
 
         content = content.replace(/<table .*(style=".*?.*url\((.*)\).*".*)>/g, replaceCallBack);
         content = content.replace(/<tr .*(style=".*?.*url\((.*)\).*".*)>/g, replaceCallBack);
@@ -169,7 +173,7 @@ function recoveryVarStyle () {
         file.contents = new Buffer(content);
         cb(null, file);
 
-        function replaceCallBack (td, style, url) {
+        function replaceCallBack(td, style, url) {
             // 移动url到td background
             td = td.replace(style, `background="${url}" $&`);
 
