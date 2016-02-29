@@ -3,7 +3,7 @@ $(function () {
 
 // 触发渲染模板
     $(document).on('renderTpl', function (event, rst) {
-        var $form  = $('form'),
+        var $form = $('form'),
             newRst = $form.jsonFormValue && $form.jsonFormValue();
 
         Object.keys(rst).forEach(function (v) {
@@ -16,7 +16,7 @@ $(function () {
     $.getJSON(jsonSrc).then(function (rst) {
         $(document).trigger('renderTpl', rst);
 
-        var $form    = $('<form></form>'),
+        var $form = $('<form></form>'),
             formJson = rst[Object.keys(rst)[0]].form;
 
         $form.jsonForm(formJson);
@@ -30,17 +30,17 @@ $(function () {
         $('body').append($form);
     });
 
-    function render (size, json) {
-        var html     = $('[data-tpl-size="' + size + '"]').html(),
+    function render(size, json) {
+        var html = $('[data-tpl-size="' + size + '"]').html(),
             template = Handlebars.compile(html)(json),
-            $tpl     = $('#___' + size + '___');
+            $tpl = $('#___' + size + '___');
 
 
         if ($tpl.length !== 0) {
             $tpl.html(template);
         } else {
             var $el = $('<div id="___' + size + '___"></div>');
-            $('body').append('<div class="hr-desc"><span>${size}</span></div>').append($el);
+            $('body').append('<div class="hr-desc"><span>' + size + '</span></div>').append($el);
 
             render(size, json);
         }
@@ -49,7 +49,7 @@ $(function () {
     var createLink = function (link) {
         var dom = document.createElement('link');
 
-        dom.rel  = 'stylesheet';
+        dom.rel = 'stylesheet';
         dom.href = link;
         document.head.appendChild(dom);
     };
@@ -239,8 +239,8 @@ Handlebars.registerHelper('and', function () {
         throw new Error('helper "and" need at least 2 arguments');
     }
     var options = arguments[arguments.length - 1];
-    var items   = [].slice.call(arguments, 0, arguments.length - 1);
-    var result  = items.reduce(function (memo, item) {
+    var items = [].slice.call(arguments, 0, arguments.length - 1);
+    var result = items.reduce(function (memo, item) {
         return memo && item;
     });
     if (result) {
@@ -257,8 +257,8 @@ Handlebars.registerHelper('or', function () {
     }
 
     var options = arguments[arguments.length - 1];
-    var items   = [].slice.call(arguments, 0, arguments.length - 1);
-    var result  = items.reduce(function (memo, item) {
+    var items = [].slice.call(arguments, 0, arguments.length - 1);
+    var result = items.reduce(function (memo, item) {
         return memo || item;
     });
     if (result) {
