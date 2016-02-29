@@ -31,13 +31,13 @@
       "fn": "zyColorSelector",
       "desc": "颜色",
       "default": [
-        "#ff6b1b",
-        "#ff93a7",
-        "#a9856d",
-        "#3ebba3",
-        "#fd0d62",
-        "#4bbc2c",
-        "#3385ff"
+        "ff6b1b",
+        "ff93a7",
+        "a9856d",
+        "3ebba3",
+        "fd0d62",
+        "4bbc2c",
+        "3385ff"
       ]
     }
   },
