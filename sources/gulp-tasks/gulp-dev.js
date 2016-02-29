@@ -15,7 +15,7 @@ module.exports = function (jsonDir) {
             var _content = content,
                 size = jsonFile[v].size;
 
-            var tplWidth = jsonFile[v].isMobile ? v + 'px' : 'auto';
+            var tplWidth = jsonFile[v].isMobile ? v + 'px' : v + 'px';
 
             // 更新对应size
             _content = _content.replace(/\{\{size\._picSize}}/g, size._picSize);
