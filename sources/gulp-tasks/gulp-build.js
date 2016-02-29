@@ -1,11 +1,11 @@
-var through    = require('through2'),
-    gutil      = require('gulp-util'),
-    fs         = require('fs'),
-    path       = require('path'),
-    jsdom      = require("jsdom"),
+var through = require('through2'),
+    gutil = require('gulp-util'),
+    fs = require('fs'),
+    path = require('path'),
+    jsdom = require("jsdom"),
     handlebars = require('handlebars'),
-    iconv      = require('iconv-lite'),
-    rimraf     = require('rimraf');
+    iconv = require('iconv-lite'),
+    rimraf = require('rimraf');
 
 
 /**
@@ -188,8 +188,8 @@ handlebars.registerHelper('and', function () {
         throw new Error('helper "and" need at least 2 arguments');
     }
     var options = arguments[arguments.length - 1];
-    var items   = [].slice.call(arguments, 0, arguments.length - 1);
-    var result  = items.reduce(function (memo, item) {
+    var items = [].slice.call(arguments, 0, arguments.length - 1);
+    var result = items.reduce(function (memo, item) {
         return memo && item;
     });
     if (result) {
@@ -206,8 +206,8 @@ handlebars.registerHelper('or', function () {
     }
 
     var options = arguments[arguments.length - 1];
-    var items   = [].slice.call(arguments, 0, arguments.length - 1);
-    var result  = items.reduce(function (memo, item) {
+    var items = [].slice.call(arguments, 0, arguments.length - 1);
+    var result = items.reduce(function (memo, item) {
         return memo || item;
     });
     if (result) {
@@ -258,14 +258,14 @@ handlebars.registerHelper("toFixed", function (number, params) {
 
 module.exports = function (srcDir, jsonDir, dist) {
     return through.obj(function (file, enc, cb) {
-        var content  = file.contents.toString(),
+        var content = file.contents.toString(),
             fileName = file.relative.split('.')[0],
-            json     = path.join(process.cwd(), jsonDir, `${fileName}.json`),
+            json = path.join(process.cwd(), jsonDir, `${fileName}.json`),
             jsonFile = JSON.parse(fs.readFileSync(json).toString());
 
         // 创建文件夹
-        var newTplDir       = path.join(process.cwd(), dist, `${fileName}`),
-            newCodeDir      = `${newTplDir}/src`,
+        var newTplDir = path.join(process.cwd(), dist, `${fileName}`),
+            newCodeDir = `${newTplDir}/src`,
             srcCodeFileName = path.join(process.cwd(), srcDir, `${fileName}`);
 
         if (!fs.existsSync(newTplDir)) {
@@ -279,9 +279,9 @@ module.exports = function (srcDir, jsonDir, dist) {
         fs.writeFileSync(`${newCodeDir}/${fileName}.scss`, fs.readFileSync(`${srcCodeFileName}.scss`));
 
         Object.keys(jsonFile).forEach(v => {
-            var document   = jsdom.jsdom(content),
-                newHbsFile = path.join(newTplDir, `${fileName}-${v}.hbs`),
-                hbs        = document.querySelector(`[data-tpl-size="${v}"]`).innerHTML;
+            var document = jsdom.jsdom(content),
+                newHbsFile = path.join(newTplDir, `${v}.hbs`),
+                hbs = document.querySelector(`[data-tpl-size="${v}"]`).innerHTML;
 
             // 清除掉class
             hbs = hbs.replace(/\sclass="(.*?)"/g, '');
@@ -289,19 +289,19 @@ module.exports = function (srcDir, jsonDir, dist) {
             // 创建hbs
             fs.writeFileSync(newHbsFile, hbs);
 
-            var json        = {
-                    tplDefultVal  : {},
-                    tplform       : {},
+            var json = {
+                    tplDefultVal: {},
+                    tplform: {},
                     itemDefaultVal: {},
-                    itemForm      : {}
+                    itemForm: {}
                 },
-                jsonTpl     = jsonFile[v],
-                newJsonFile = path.join(newTplDir, `${fileName}-${v}.json`);
+                jsonTpl = jsonFile[v],
+                newJsonFile = path.join(newTplDir, `data.json`);
 
-            json.tplDefultVal   = jsonTpl.tpl;
-            json.tplform        = jsonTpl.form;
+            json.tplDefultVal = jsonTpl.tpl;
+            json.tplform = jsonTpl.form;
             json.itemDefaultVal = jsonTpl.item;
-            json.itemForm       = jsonTpl.itemForm;
+            json.itemForm = jsonTpl.itemForm;
 
             // 创建json
             fs.writeFileSync(newJsonFile, JSON.stringify(json, null, 2));
@@ -313,7 +313,7 @@ module.exports = function (srcDir, jsonDir, dist) {
             }
             `;
 
-            var html        = `
+            var html = `
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -334,7 +334,7 @@ module.exports = function (srcDir, jsonDir, dist) {
     ${hbs}
     </body>
 </html>`;
-            var newHtmlFile = path.join(newTplDir, `${fileName}-${v}.html`);
+            var newHtmlFile = path.join(newTplDir, `${v}.html`);
 
             // 创建html预览
             fs.writeFileSync(newHtmlFile, handlebars.compile(html)(jsonTpl));
