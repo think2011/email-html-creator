@@ -6,18 +6,18 @@ var through = require('through2'),
     rimraf  = require('rimraf');
 
 var imgs = [
-    'https://img.alicdn.com/bao/uploaded/i1/TB1vNSAKpXXXXXkaXXXXXXXXXXX_!!0-item_pic.jpg',
-    'https://img.alicdn.com/bao/uploaded/i2/TB19BoKIFXXXXbxXFXXXXXXXXXX_!!0-item_pic.jpg',
-    'https://img.alicdn.com/bao/uploaded/i2/TB1tYNUKFXXXXcXXFXXXXXXXXXX_!!0-item_pic.jpg',
-    'https://img.alicdn.com/bao/uploaded/i4/TB1uXoxKXXXXXbcXXXXXXXXXXXX_!!0-item_pic.jpg',
-    'https://img.alicdn.com/bao/uploaded/i2/TB1.H9MKpXXXXasXVXXXXXXXXXX_!!0-item_pic.jpg',
-    'https://img.alicdn.com/bao/uploaded/i1/TB10wJkKpXXXXcIaXXXXXXXXXXX_!!0-item_pic.jpg',
-    'https://img.alicdn.com/bao/uploaded/i3/TB1BwiOKpXXXXaMXFXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i4/TB1C_whLXXXXXcIXVXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i3/2406822118/TB2OvS.kFXXXXaVXXXXXXXXXXXX_!!2406822118.jpg',
+    'https://img.alicdn.com/bao/uploaded/i2/TB1vzRLHXXXXXaqaXXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i1/TB1tplcHXXXXXcdXpXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i3/TB1LhZxJVXXXXaMXVXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i3/TB1C_omLXXXXXabXVXXXXXXXXXX_!!0-item_pic.jpg',
+    'https://img.alicdn.com/bao/uploaded/i2/2406822118/TB2d61RkFXXXXXoXpXXXXXXXXXX_!!2406822118.jpg',
     'https://img.alicdn.com/bao/uploaded/i3/TB1Ptb0HpXXXXcmXpXXXXXXXXXX_!!0-item_pic.jpg'
 ];
 
 
-function rand (begin, end, floor) {
+function rand(begin, end, floor) {
     return floor
         ? ((Math.random() * (end - begin)) + begin).toFixed(2)
         : Math.ceil(Math.random() * (end - begin)) + begin;
@@ -92,11 +92,11 @@ var createJsonForm = function (formDefine, skipTags) {
 var processJson = function (template, form, goods) {
     var json       = {
             size : {},
-            form: {
+            form : {
                 schema: {},
                 form  : []
             },
-            tpl : {},
+            tpl  : {},
             items: []
         },
         _goodsTemp = {};
