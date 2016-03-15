@@ -1,0 +1,75 @@
+{
+  "模板定义": {
+    "990": {
+      "type": "fixed",
+      "maxTr": 3,
+      "maxTd": 3,
+      "_picSize": 240,
+      "isMobile": true
+    }
+  },
+  "表单定义": {
+    "title": {
+      "type": "string",
+      "fn": "text",
+      "desc": "标题",
+      "default": "满减包邮"
+    },
+    "action": {
+      "type": "string",
+      "fn": "text",
+      "desc": "标题描述",
+      "default": "满减活动"
+    },
+    "startTime": {
+      "type": "string",
+      "fn": "text",
+      "desc": "开始时间",
+      "default": "2016-03-15 16:07:37"
+    },
+    "endTime": {
+      "type": "string",
+      "fn": "text",
+      "desc": "结束时间",
+      "default": "2016-04-15 16:07:47"
+    },
+    "remark": {
+      "type": "string",
+      "fn": "text",
+      "desc": "备注",
+      "default": "备注备注备注备注"
+    }
+  },
+  "宝贝定义": {
+    "title": {
+      "type": "string",
+      "fn": "text",
+      "desc": "标题",
+      "default": "SHERRY小玉酱2015秋冬麻花流苏披肩围巾女士百搭款围脖秋"
+    },
+    "express": {
+      "type": "string",
+      "fn": "text",
+      "desc": "标签",
+      "default": "包邮"
+    },
+    "express_type": {
+      "type": "string",
+      "fn": "text",
+      "desc": "标签",
+      "default": "港澳台及海外除外"
+    },
+    "price": {
+      "type": "string",
+      "fn": "text",
+      "desc": "原价",
+      "default": 188.00
+    },
+    "price_reduce": {
+      "type": "string",
+      "fn": "text",
+      "desc": "减价",
+      "default": 20
+    }
+  }
+}

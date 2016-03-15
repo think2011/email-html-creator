@@ -1,0 +1,63 @@
+<table class="container">
+    <tr>
+        <td style="
+        width: 150px;
+        border-right: 1px dashed #ea040b;
+        vertical-align: middle;
+        " class="text-center">
+            <p style="
+            width: 45px;
+            height:45px;
+            color:#fff;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 24px;
+            margin: 0 auto;
+            padding: 10px;
+            text-align: center;
+            background: #e9040d;">{{tpl.action}}</p>
+            <p class="m-t-5">
+                {{tpl.title}}
+            </p>
+        </td>
+
+        <td style="
+        padding: 20px;
+        ">
+            <p class="text-muted m-b-10">
+                活动日期:
+                {{tpl.startTime}}
+                --
+                {{tpl.endTime}}
+            </p>
+
+            <ul class="
+            m-b-10
+            ">
+                {{#each items}}
+                    <li class="m-b-10">
+                        <span class="text-muted f-s-12">&bull;</span>
+                        单笔订单买满
+                        <span class="red b">
+                            {{price}}
+                        </span>
+                        元,
+                        立减
+                        <span class="red b">{{price_reduce}}</span>
+                        元;
+                        <span class="red b">{{express}}</span>
+                        <span class="text-muted">({{express_type}})</span>
+                        ;
+                        送
+                        <span class="red b">{{title}}</span>
+                    </li>
+                {{/each}}
+            </ul>
+
+            <p>
+                <span class="red" style="vertical-align: bottom;">*</span> <span
+                    class="text-muted">{{tpl.remark}}</span>
+            </p>
+        </td>
+    </tr>
+</table>
