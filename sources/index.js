@@ -3,7 +3,7 @@ $(function () {
 
 // 触发渲染模板
     $(document).on('renderTpl', function (event, rst) {
-        var $form = $('form'),
+        var $form  = $('form'),
             newRst = $form.jsonFormValue && $form.jsonFormValue();
 
         Object.keys(rst).forEach(function (v) {
@@ -16,7 +16,7 @@ $(function () {
     $.getJSON(jsonSrc).then(function (rst) {
         $(document).trigger('renderTpl', rst);
 
-        var $form = $('<form></form>'),
+        var $form    = $('<form></form>'),
             formJson = rst[Object.keys(rst)[0]].form;
 
         $form.jsonForm(formJson);
@@ -31,9 +31,9 @@ $(function () {
     });
 
     function render(size, json) {
-        var html = $('[data-tpl-size="' + size + '"]').html(),
+        var html     = $('[data-tpl-size="' + size + '"]').html(),
             template = Handlebars.compile(html)(json),
-            $tpl = $('#___' + size + '___');
+            $tpl     = $('#___' + size + '___');
 
 
         if ($tpl.length !== 0) {
@@ -49,7 +49,7 @@ $(function () {
     var createLink = function (link) {
         var dom = document.createElement('link');
 
-        dom.rel = 'stylesheet';
+        dom.rel  = 'stylesheet';
         dom.href = link;
         document.head.appendChild(dom);
     };
@@ -239,8 +239,8 @@ Handlebars.registerHelper('and', function () {
         throw new Error('helper "and" need at least 2 arguments');
     }
     var options = arguments[arguments.length - 1];
-    var items = [].slice.call(arguments, 0, arguments.length - 1);
-    var result = items.reduce(function (memo, item) {
+    var items   = [].slice.call(arguments, 0, arguments.length - 1);
+    var result  = items.reduce(function (memo, item) {
         return memo && item;
     });
     if (result) {
@@ -257,8 +257,8 @@ Handlebars.registerHelper('or', function () {
     }
 
     var options = arguments[arguments.length - 1];
-    var items = [].slice.call(arguments, 0, arguments.length - 1);
-    var result = items.reduce(function (memo, item) {
+    var items   = [].slice.call(arguments, 0, arguments.length - 1);
+    var result  = items.reduce(function (memo, item) {
         return memo || item;
     });
     if (result) {
@@ -305,4 +305,269 @@ Handlebars.registerHelper("toFixed", function (number, params) {
         default:
             return +number;
     }
+});
+
+/**
+ * 根据传入的地区信息转换出符合规则的内容
+ *
+ * 注意:传入的字符串地址需要是根据id排序好的
+ */
+Handlebars.registerHelper('decodeExpress', function (str, options) {
+    let address = [
+        {
+            "id"  : 100000,
+            "name": "华北"
+        },
+        {
+            "id"      : 110000,
+            "name"    : "北京",
+            "parentId": 100000
+        },
+        {
+            "id"      : 120000,
+            "name"    : "天津",
+            "parentId": 100000
+        },
+        {
+            "id"      : 130000,
+            "name"    : "河北",
+            "parentId": 100000
+        },
+        {
+            "id"      : 140000,
+            "name"    : "山西",
+            "parentId": 100000
+        },
+        {
+            "id"      : 150000,
+            "name"    : "内蒙古",
+            "parentId": 100000
+        },
+        {
+            "id"  : 200000,
+            "name": "东北"
+        },
+        {
+            "id"      : 210000,
+            "name"    : "辽宁",
+            "parentId": 200000
+        },
+        {
+            "id"      : 220000,
+            "name"    : "吉林",
+            "parentId": 200000
+        },
+        {
+            "id"      : 230000,
+            "name"    : "黑龙江",
+            "parentId": 200000
+        },
+        {
+            "id"  : 300000,
+            "name": "华东"
+        },
+        {
+            "id"      : 310000,
+            "name"    : "上海",
+            "parentId": 300000
+        },
+        {
+            "id"      : 320000,
+            "name"    : "江苏",
+            "parentId": 300000
+        },
+        {
+            "id"      : 330000,
+            "name"    : "浙江",
+            "parentId": 300000
+        },
+        {
+            "id"      : 340000,
+            "name"    : "安徽",
+            "parentId": 300000
+        },
+        {
+            "id"      : 350000,
+            "name"    : "福建",
+            "parentId": 300000
+        },
+        {
+            "id"      : 360000,
+            "name"    : "江西",
+            "parentId": 300000
+        },
+        {
+            "id"      : 370000,
+            "name"    : "山东",
+            "parentId": 300000
+        },
+        {
+            "id"  : 400001,
+            "name": "华中"
+        },
+        {
+            "id"  : 400002,
+            "name": "华南"
+        },
+        {
+            "id"      : 410000,
+            "name"    : "河南",
+            "parentId": 400001
+        },
+        {
+            "id"      : 420000,
+            "name"    : "湖北",
+            "parentId": 400001
+        },
+        {
+            "id"      : 430000,
+            "name"    : "湖南",
+            "parentId": 400001
+        },
+        {
+            "id"      : 440000,
+            "name"    : "广东",
+            "parentId": 400002
+        },
+        {
+            "id"      : 450000,
+            "name"    : "广西",
+            "parentId": 400002
+        },
+        {
+            "id"      : 460000,
+            "name"    : "海南",
+            "parentId": 400002
+        },
+        {
+            "id"      : 500000,
+            "name"    : "重庆",
+            "parentId": 500001
+        },
+        {
+            "id"  : 500001,
+            "name": "西南"
+        },
+        {
+            "id"      : 510000,
+            "name"    : "四川",
+            "parentId": 500001
+        },
+        {
+            "id"      : 520000,
+            "name"    : "贵州",
+            "parentId": 500001
+        },
+        {
+            "id"      : 530000,
+            "name"    : "云南",
+            "parentId": 500001
+        },
+        {
+            "id"      : 540000,
+            "name"    : "西藏",
+            "parentId": 500001
+        },
+        {
+            "id"  : 600000,
+            "name": "西北"
+        },
+        {
+            "id"      : 610000,
+            "name"    : "陕西",
+            "parentId": 600000
+        },
+        {
+            "id"      : 620000,
+            "name"    : "甘肃",
+            "parentId": 600000
+        },
+        {
+            "id"      : 630000,
+            "name"    : "青海",
+            "parentId": 600000
+        },
+        {
+            "id"      : 640000,
+            "name"    : "宁夏",
+            "parentId": 600000
+        },
+        {
+            "id"      : 650000,
+            "name"    : "新疆",
+            "parentId": 600000
+        },
+        {
+            "id"  : 700000,
+            "name": "常用不包邮地区"
+        },
+        {
+            "id"      : 710000,
+            "name"    : "台湾",
+            "parentId": 700000
+        },
+        {
+            "id"      : 810000,
+            "name"    : "香港",
+            "parentId": 700000
+        },
+        {
+            "id"      : 820000,
+            "name"    : "澳门",
+            "parentId": 700000
+        },
+        {
+            "id"      : 990000,
+            "name"    : "海外",
+            "parentId": 700000
+        }
+    ]
+
+    let normalized = function (arr) {
+        return arr.filter((v) => v.parentId).sort((a, b) => a.id > b.id ? 1 : -1).map(v => v.name).join(',')
+    }
+    let filterFn   = {
+        all      : normalized(address),
+        inland   : normalized(address.filter((v) => {
+            let excludes = ['台湾', '香港', '澳门', '海外', '新疆', '西藏']
+
+            return !excludes.includes(v.name)
+        })),
+        getAll   : function () {
+            if (str === this.all) {
+                options.data.action  = '包邮地区'
+                options.data.content = '全球包邮'
+
+                return str
+            } else {
+                return false
+            }
+        },
+        getInland: function () {
+            if (str === this.inland) {
+                options.data.action  = '包邮地区'
+                options.data.content = '全国包邮（不包含港澳台，西藏，新疆）'
+
+                return str
+            } else {
+                return false
+            }
+        },
+        getHalf  : function () {
+            if (str.length < this.all.length / 2) {
+                options.data.action  = '包邮地区'
+                options.data.content = str
+            } else {
+                let input = str.split(',')
+                let all   = this.all.split(',')
+
+                options.data.action  = '不包邮地区'
+                options.data.content = all.filter((v) => !input.includes(v)).join(',')
+            }
+
+            return str
+        }
+    }
+
+    return options.fn(filterFn.getAll() || filterFn.getInland() || filterFn.getHalf())
 });
