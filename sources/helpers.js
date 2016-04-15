@@ -54,6 +54,9 @@
  * 用法: {{encode str}}
  * 含义: 将str字符串使用encodeURIComponent转义
  *
+ *  14. xIf TODO:目前仅支持满减模板使用
+ *  用法: {{xIf lvalue operator rvalue}}
+ *  含义: 支持字符串数组的判断
  **/
 
 if (typeof require !== 'undefined') {
@@ -513,4 +516,60 @@ Handlebars.registerHelper('decodeExpress', function (str, options) {
     }
 
     return options.fn(filterFn.getAll() || filterFn.getInland() || filterFn.getHalf())
+});
+
+Handlebars.registerHelper('xIf', function (lvalue, operator, rvalue, options) {
+    var operators, result;
+
+    if (arguments.length < 3) {
+        throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
+    }
+
+    if (options === undefined) {
+        options  = rvalue;
+        rvalue   = operator;
+        operator = "===";
+    }
+
+    operators = {
+        '=='    : function (l, r) {
+            return l == r;
+        },
+        '==='   : function (l, r) {
+            return l === r;
+        },
+        '!='    : function (l, r) {
+            return l != r;
+        },
+        '!=='   : function (l, r) {
+            return l !== r;
+        },
+        '<'     : function (l, r) {
+            return l < r;
+        },
+        '>'     : function (l, r) {
+            return l > r;
+        },
+        '<='    : function (l, r) {
+            return l <= r;
+        },
+        '>='    : function (l, r) {
+            return l >= r;
+        },
+        'typeof': function (l, r) {
+            return typeof l == r;
+        }
+    };
+
+    if (!operators[operator]) {
+        throw new Error("'xIf' doesn't know the operator " + operator);
+    }
+
+    result = operators[operator](lvalue, rvalue);
+
+    if (result) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
 });

@@ -46,7 +46,12 @@
                         {{/if}}
 
                         {{#if price_reduce}}
-                            立减
+                            {{#xIf price_reduce_unit "===" "元"}}
+                                立减
+                            {{else}}
+                                立折
+                            {{/xIf}}
+
                             <span class="red b">{{price_reduce}}</span>
                             {{price_reduce_unit}};
                         {{/if}}

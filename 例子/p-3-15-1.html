@@ -15,7 +15,7 @@
             margin: 0 auto;
             padding: 10px;
             text-align: center;
-            background: #e9040d;">{{tpl.action}}</p>
+            background: #e9040d;">满减包邮</p>
             <p class="m-t-5">
                 {{tpl.title}}
             </p>
@@ -36,28 +36,55 @@
             ">
                 {{#each items}}
                     <li class="m-b-10">
-                        <span class="text-muted f-s-12">&bull;</span>
-                        单笔订单买满
-                        <span class="red b">
-                            {{price}}
-                        </span>
-                        元,
-                        立减
-                        <span class="red b">{{price_reduce}}</span>
-                        元;
-                        <span class="red b">{{express}}</span>
-                        <span class="text-muted">({{express_type}})</span>
-                        ;
-                        送
-                        <span class="red b">{{title}}</span>
+                        {{#if price}}
+                            <span class="text-muted f-s-12">&bull;</span>
+                            单笔订单买满
+                            <span class="red b">
+                                {{price}}
+                            </span>
+                            {{price_unit}},
+                        {{/if}}
+
+
+
+
+                        {{#if price_reduce}}
+                            {{#xIf price_reduce_unit "===" "元"}}
+                                立减
+                            {{else}}
+                                立折
+                            {{/xIf}}
+
+                            <span class="red b">{{price_reduce}}</span>
+                            {{price_reduce_unit}};
+                        {{/if}}
+
+                        {{#if express}}
+                            {{#decodeExpress express}}
+                                <span class="red b">{{@action}}</span>
+                                <span class="text-muted">({{@content}})</span>
+                                ;
+                            {{/decodeExpress}}
+                        {{/if}}
+
+                        {{#if title}}
+                            送
+                            <a class="red b" href="{{url}}" target="_blank">{{title}}</a>;
+                        {{/if}}
+
+                        {{#if noCeiling}}
+                            {{noCeiling}}
+                        {{/if}}
                     </li>
                 {{/each}}
             </ul>
 
-            <p>
-                <span class="red" style="vertical-align: bottom;">*</span> <span
-                    class="text-muted">{{tpl.remark}}</span>
-            </p>
+            {{#if tpl.remark}}
+                <p>
+                    <span class="red" style="vertical-align: bottom;">*</span> <span
+                        class="text-muted">{{tpl.remark}}</span>
+                </p>
+            {{/if}}
         </td>
     </tr>
 </table>

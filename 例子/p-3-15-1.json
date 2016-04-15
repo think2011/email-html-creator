@@ -15,12 +15,6 @@
       "desc": "标题",
       "default": "满减包邮"
     },
-    "action": {
-      "type": "string",
-      "fn": "text",
-      "desc": "标题描述",
-      "default": "满减活动"
-    },
     "startTime": {
       "type": "string",
       "fn": "text",
@@ -51,13 +45,7 @@
       "type": "string",
       "fn": "text",
       "desc": "标签",
-      "default": "包邮"
-    },
-    "express_type": {
-      "type": "string",
-      "fn": "text",
-      "desc": "标签",
-      "default": "港澳台及海外除外"
+      "default": "广东,广西,海南,重庆,四川,贵州"
     },
     "price": {
       "type": "string",
@@ -65,11 +53,29 @@
       "desc": "原价",
       "default": 188.00
     },
+    "price_unit": {
+      "type": "string",
+      "fn": "text",
+      "desc": "价格单位",
+      "default": "元"
+    },
     "price_reduce": {
       "type": "string",
       "fn": "text",
       "desc": "减价",
       "default": 20
+    },
+    "price_reduce_unit": {
+      "type": "string",
+      "fn": "text",
+      "desc": "减价单位",
+      "default": "元"
+    },
+    "noCeiling": {
+      "type": "string",
+      "fn": "text",
+      "desc": "上不封顶",
+      "default": "上不封顶"
     }
   }
 }

@@ -76,6 +76,9 @@ gulp.task('dev', ['dev:json', 'dev:sass'], function () {
             return this;
         }))
 
+        // decodeHTML
+        .pipe(decodeHtml())
+        
         .pipe(gulp.dest(paths.dist))
 
         .on('end', browserSync.reload);
