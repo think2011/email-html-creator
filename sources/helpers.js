@@ -57,6 +57,9 @@
  *  14. xIf TODO:目前仅支持满减模板使用
  *  用法: {{xIf lvalue operator rvalue}}
  *  含义: 支持字符串数组的判断
+ *
+ *  14. addOne
+ *  含义: 数字加1,用于@index
  **/
 
 if (typeof require !== 'undefined') {
@@ -492,7 +495,7 @@ Handlebars.registerHelper('decodeExpress', function (str, options) {
         getInland: function () {
             if (str === this.inland) {
                 options.data.action  = '包邮地区'
-                options.data.content = '全国包邮（不包含港澳台，西藏，新疆）'
+                options.data.content = '全国包邮（不包含港澳台，西藏，新疆，海外）'
 
                 return str
             } else {
@@ -516,6 +519,14 @@ Handlebars.registerHelper('decodeExpress', function (str, options) {
     }
 
     return options.fn(filterFn.getAll() || filterFn.getInland() || filterFn.getHalf())
+});
+
+
+/**
+ * 数字+1
+ */
+Handlebars.registerHelper("addOne", function (index) {
+    return index + 1;
 });
 
 Handlebars.registerHelper('xIf', function (lvalue, operator, rvalue, options) {
