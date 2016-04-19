@@ -41,6 +41,12 @@
       "desc": "标题",
       "default": "SHERRY小玉酱2015秋冬麻花流苏披肩围巾女士百搭款围脖秋"
     },
+    "orderType": {
+      "type": "string",
+      "fn": "text",
+      "desc": "订单或单品",
+      "default": "单品"
+    },
     "express": {
       "type": "string",
       "fn": "text",

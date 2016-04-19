@@ -38,15 +38,17 @@
                     <li class="m-b-10">
                         {{#if price}}
                             <span class="text-muted f-s-12">&bull;</span>
-                            单笔订单买满
+                            {{#xIf orderType "===" "单品"}}
+                                单品买满
+                            {{else}}
+                                单笔订单买满
+                            {{/xIf}}
+
                             <span class="red b">
                                 {{price}}
                             </span>
                             {{price_unit}},
                         {{/if}}
-
-
-
 
                         {{#if price_reduce}}
                             {{#xIf price_reduce_unit "===" "元"}}
