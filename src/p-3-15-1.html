@@ -63,7 +63,7 @@
 
                         {{#if express}}
                             {{#decodeExpress express}}
-                                <span class="red b">{{@action}}</span>
+                                <span class="red b">免邮费</span>
                                 <span class="text-muted">({{@content}})</span>
                                 ;
                             {{/decodeExpress}}
@@ -83,8 +83,7 @@
 
             {{#if tpl.remark}}
                 <p>
-                    <span class="red" style="vertical-align: bottom;">*</span> <span
-                        class="text-muted">{{tpl.remark}}</span>
+                    <span class="red" style="vertical-align: bottom;">*</span> <span>{{tpl.remark}}</span>
                 </p>
             {{/if}}
         </td>
