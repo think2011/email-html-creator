@@ -79,14 +79,22 @@
                         {{/if}}
                     </li>
                 {{/each}}
-            </ul>
 
-            {{#if tpl.remark}}
-                <p>
-                    <span class="red" style="vertical-align: bottom;">*</span> <span
-                        class="text-muted">{{tpl.remark}}</span>
-                </p>
-            {{/if}}
+                {{#if tpl.remark}}
+                    <li>
+                        <table>
+                            <tr>
+                                <td style="width: 15px">
+                                    <span class="red" style="vertical-align: bottom;">*</span>
+                                </td>
+                                <td>
+                                    <span>{{{tpl.remark}}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </li>
+                {{/if}}
+            </ul>
         </td>
     </tr>
 </table>
