@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * 常用的handlebars扩展helper
  *

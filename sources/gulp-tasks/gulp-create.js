@@ -24,6 +24,8 @@ function rand(begin, end, floor) {
 }
 
 var splitFloat = function (num) {
+    num = '' + num
+
     return [
         num.split('.')[0],
         num.split('.')[1]
@@ -36,9 +38,11 @@ var createGoodsObj = function (goodsObj) {
         picUrl      : imgs.shift(),
         url         : 'http://taobao.com',
         price       : rand(1, 12000, true),
-        promoPrice  : rand(1, 12000, true),
+        promoPrice  : null,
         soldQuantity: rand(1, 3000)
     });
+
+    temp.promoPrice = temp.price * 0.7
 
     // 增加整数和小数部分
     temp.price_a      = splitFloat(temp.price)[0];
