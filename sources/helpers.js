@@ -535,8 +535,8 @@ Handlebars.registerHelper("addOne", function (index) {
  * 加减乘除
  */
 Handlebars.registerHelper("math", function (lvalue, operator, rvalue, options) {
-    lvalue = parseFloat(lvalue);
-    rvalue = parseFloat(rvalue);
+    lvalue = +(parseFloat(lvalue).toFixed(2));
+    rvalue = +(parseFloat(rvalue).toFixed(2));
 
     return {
         "+": lvalue + rvalue,
