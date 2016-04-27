@@ -535,16 +535,18 @@ Handlebars.registerHelper("addOne", function (index) {
  * 加减乘除
  */
 Handlebars.registerHelper("math", function (lvalue, operator, rvalue, options) {
-    lvalue = +(parseFloat(lvalue).toFixed(2));
-    rvalue = +(parseFloat(rvalue).toFixed(2));
+    lvalue = parseFloat(lvalue);
+    rvalue = parseFloat(rvalue);
 
-    return {
+    let result = {
         "+": lvalue + rvalue,
         "-": lvalue - rvalue,
         "*": lvalue * rvalue,
         "/": lvalue / rvalue,
         "%": lvalue % rvalue
-    }[operator];
+    }[operator]
+
+    return result.toFixed(2);
 });
 
 Handlebars.registerHelper('xIf', function (lvalue, operator, rvalue, options) {
