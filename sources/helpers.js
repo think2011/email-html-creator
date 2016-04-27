@@ -60,6 +60,10 @@
  *
  *  14. addOne
  *  含义: 数字加1,用于@index
+ *
+ *  15. match
+ *  用法: {{math A '+' B}}
+ *  含义: 加减乘除等
  **/
 
 if (typeof require !== 'undefined') {
@@ -524,6 +528,23 @@ Handlebars.registerHelper('decodeExpress', function (str, options) {
  */
 Handlebars.registerHelper("addOne", function (index) {
     return index + 1;
+});
+
+
+/**
+ * 加减乘除
+ */
+Handlebars.registerHelper("math", function (lvalue, operator, rvalue, options) {
+    lvalue = parseFloat(lvalue);
+    rvalue = parseFloat(rvalue);
+
+    return {
+        "+": lvalue + rvalue,
+        "-": lvalue - rvalue,
+        "*": lvalue * rvalue,
+        "/": lvalue / rvalue,
+        "%": lvalue % rvalue
+    }[operator];
 });
 
 Handlebars.registerHelper('xIf', function (lvalue, operator, rvalue, options) {
