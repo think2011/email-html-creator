@@ -548,7 +548,7 @@ Handlebars.registerHelper("math", function (lvalue, operator, rvalue, options) {
         "%": lvalue % rvalue
     }[operator]
 
-    return result.toFixed(2);
+    return isNaN(result) ? '0' : result.toFixed(2);
 });
 
 Handlebars.registerHelper('xIf', function (lvalue, operator, rvalue, options) {

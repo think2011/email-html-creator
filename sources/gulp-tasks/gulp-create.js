@@ -42,7 +42,7 @@ var createGoodsObj = function (goodsObj) {
         soldQuantity: rand(1, 3000)
     });
 
-    temp.promoPrice = temp.price * 0.7
+    temp.promoPrice = (temp.price * 0.7).toFixed(2)
 
     // 增加整数和小数部分
     temp.price_a      = splitFloat(temp.price)[0];
