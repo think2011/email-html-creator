@@ -1,16 +1,14 @@
 {
   "模板定义": {
     "750": {
-      "type": "flow",
-      "maxTr": 12,
-      "maxTd": 3,
-      "_picSize": 240
+      "type": "fixed",
+      "maxTr": 6,
+      "maxTd": 6
     },
     "990": {
-      "type": "flow",
-      "maxTr": 12,
-      "maxTd": 4,
-      "_picSize": 240
+      "type": "fixed",
+      "maxTr": 6,
+      "maxTd": 6
     }
   },
   "表单定义": {

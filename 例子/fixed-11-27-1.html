@@ -1,4 +1,3 @@
-
 <table>
     <!-- header -->
     <tr>
@@ -63,26 +62,25 @@
     <!-- items -->
     {{#each items}}
         <tr style="background: #f4f2e9;">
-            {{#each this}}
-                <td width="5"></td>
-                <td>
-                    <table>
-                        <tr>
-                            <td class="bg-no-repeat bg-center"
-                                background="{{picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg">
-                                <a href="{{url}}" style="width: {{size._picSize}}px;height: {{size._picSize}}px;"> </a>
-                            </td>
-                        </tr>
-                    </table>
+            <td width="5"></td>
+            <td>
+                <table>
+                    <tr>
+                        <td class="bg-no-repeat bg-center"
+                            background="{{picUrl}}_140x140.jpg">
+                            <a href="{{url}}" style="width: 140px;height: 140px;"> </a>
+                        </td>
+                    </tr>
+                </table>
 
-                    <div class="text-center bold text-nowrap m-t-10 m-b-10"
-                         style="
+                <div class="text-center bold text-nowrap m-t-10 m-b-10"
+                     style="
                              width: 240px;
                         font-size: 15px;
                         color: #333;
                         ">{{title}}</div>
 
-                    <div class="text-center m-t-10 m-b-10">
+                <div class="text-center m-t-10 m-b-10">
                             <span class="bold"
                                   style="
                             color: #ff7127;
@@ -96,10 +94,9 @@
                             ">
                                 {{price}}
                             </span>
-                    </div>
-                </td>
-                <td width="5"></td>
-            {{/each}}
+                </div>
+            </td>
+            <td width="5"></td>
         </tr>
     {{/each}}
 </table>
