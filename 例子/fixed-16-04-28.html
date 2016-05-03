@@ -1,0 +1,215 @@
+<div class="text-center">
+    <span style="
+                border: 1px solid #333;
+                color: #333;
+                display: inline-block;
+                font-weight: bold;
+                margin: 0;
+                overflow: hidden;
+                text-align: center;
+                font-size: 24px;
+                padding: 0 24px;
+                background: #fff;
+            ">
+        {{tpl.title}}
+    </span>
+</div>
+
+<div class="main" style="border: 3px solid #555;
+margin-top: -20px;">
+
+    <div style="border: 1px solid #555;
+    margin: 3px;
+    padding:30px 10px 5px 10px;">
+
+        <table class="top-pic-container">
+            <tr>
+                <td background="{{items.[0].picUrl}}"
+                    style="width:50%;height: 300px;">
+                </td>
+                <td>
+                    <div class="v-r m-b-o-10"></div>
+                </td>
+                <td background="{{items.[1].picUrl}}"
+                    style="width:50%;height: 300px;">
+                </td>
+            </tr>
+
+        </table>
+
+        <table>
+            <tr>
+                <td colspan="7">
+                    <div class="h-r"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width:25%;">
+                    <img src="{{items.[2].picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg">
+                </td>
+                <td>
+                    <div class="v-r m-t-o-10"></div>
+                </td>
+                <td style="width:25%;">
+                    <img src="{{items.[2].picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg">
+                </td>
+                <td>
+                    <div class="v-r m-t-o-10"></div>
+                </td>
+                <td style="width:25%;">
+                    <img src="{{items.[2].picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg">
+                </td>
+                <td>
+                    <div class="v-r m-t-o-10"></div>
+                </td>
+                <td style="width:25%;">
+                    <img src="{{items.[2].picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!--
+<table style="text-align:center;">
+    <tr class="header-tr-height"></tr>
+    <tr>
+        <td width="39" height="39"
+            background="https://img.alicdn.com/imgextra/i4/92779311/TB2O_T_nVXXXXXnXFXXXXXXXXXX-92779311.png"
+            style="display:inline-block;background-repeat:no-repeat;margin-left:5px;background-position: 50% 50%;margin-top: 32px;"></td>
+        <td width="35%">
+            <table>
+                <tr>
+                    <td>
+                        <div style="border-top: 3px solid #555;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="border-top: 1px solid #555;margin-top: 2px;"></div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td class="title"
+            style="font-weight:bold;border: 1px solid #333; display:inline-block;color:#333;text-align: center; overflow: hidden;">
+            {{tpl.title}}
+        </td>
+        <td width="35%">
+            <table>
+                <tr>
+                    <td background="https://img.alicdn.com/bao/uploaded/i3/2406822118/TB2OvS.kFXXXXaVXXXXXXXXXXXX_!!2406822118.jpg">
+                        <div style="border-top: 3px solid #555;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="border-top: 1px solid #555;margin-top: 2px;"></div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td width="39" height="39"
+            background="https://img.alicdn.com/imgextra/i1/92779311/TB2fbwMnVXXXXa8XXXXXXXXXXXX-92779311.png"
+            style="display:inline-block;background-repeat:no-repeat;background-position: -5px 0;margin-top: 32px;"></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td width="5"></td>
+        <td style="border-left: 3px solid #555;"></td>
+        <td width="3"></td>
+        <td>
+
+            <table style="border: 1px solid #555;border-top: none;">
+                <tr>
+                    <td
+                            style="background-image: url({{items.[0].picUrl}});"
+                            colspan="4"
+                            class="top-pic">
+
+                    </td>
+                    <td style="width: 10px"></td>
+                    <td
+                            style="background-image: url({{items.[1].picUrl}});"
+                            colspan="3"
+                            class="top-pic">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5" style="border-left: 1px solid #555;padding-left:3px;"></td>
+                    <td style=" margin-bottom:10px; display: inline-block;">
+                        <table class="content_w_h">
+                            <tr>
+                                <td class="content_w_h" height="{{size._picSize}}"
+                                    background="{{items.[0].picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg"
+                                    style="background-repeat:no-repeat;background-position:50% 0">
+                                    <a href="{{url}}" target="_blank"
+                                       style="width:100%;height:100%;display:inline-block;">
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="10"></td>
+                    <td style=" margin-bottom:10px; display: inline-block;">
+                        <table class="content_w_h">
+                            <tr>
+                                <td class="content_w_h" height="{{size._picSize}}"
+                                    background="{{items.[1].picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg "
+                                    style="background-repeat:no-repeat;background-position:50% 0">
+                                    <a href="{{url}}" target="_blank"
+                                       style="width:100%;height:100%;display:inline-block;">
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="10"></td>
+                    <td style=" margin-bottom:10px; display: inline-block;">
+                        <table class="content_w_h">
+                            <tr>
+                                <td class="content_w_h" height="{{size._picSize}}"
+                                    background="{{items.[2].picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg "
+                                    style="background-repeat:no-repeat;background-position:50% 0">
+                                    <a href="{{url}}" target="_blank"
+                                       style="width:100%;height:100%;display:inline-block;">
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="10"></td>
+                    <td style=" margin-bottom:10px; display: inline-block;">
+                        <table class="content_w_h">
+                            <tr>
+                                <td class="content_w_h" height="{{size._picSize}}"
+                                    background="{{items.[3].picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg "
+                                    style="background-repeat:no-repeat;background-position:50% 0">
+                                    <a href="{{url}}" target="_blank"
+                                       style="width:100%;height:100%;display:inline-block;">
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="10"></td>
+                    <td width="7px"></td>
+                </tr>
+            </table>
+        </td>
+        <td width="2"></td>
+        <td style="border-right: 3px solid #555;"></td>
+        <td width="5"></td>
+    </tr>
+</table>
+<table>
+    <tr height="3">
+        <td width="5"></td>
+        <td style="border:3px solid #555;border-top: none;"></td>
+        <td width="5"></td>
+    </tr>
+</table>-->
