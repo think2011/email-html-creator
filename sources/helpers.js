@@ -82,11 +82,12 @@ if (typeof require !== 'undefined') {
 
 // 得到折扣
 Handlebars.registerHelper('discount', function (price, promoPrice, retain, options) {
-    if (arguments.length !== 4) {
+    if (arguments.length !== 3) {
         throw new Error('helper "eq" needs 4 arguments');
     }
 
-    return ((+promoPrice / +price) * 10).toFixed(2)
+    // 使用 retainFn 防止出现例如9.60这样后面带0的情况
+    return retainFn(((+promoPrice / +price) * 10).toFixed(2), 2)
 });
 
 
