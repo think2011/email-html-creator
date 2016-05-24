@@ -36,6 +36,7 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
+    "gulp-changed": "^1.3.0",
     "gulp-plumber": "^1.0.1"
   }
 }

@@ -1,5 +1,5 @@
 $(function () {
-    var jsonSrc = '/dist/' + (location.pathname.split('/').pop()).split('.').shift() + '.json';
+    var jsonSrc = '/dist/json/' + (location.pathname.split('/').pop()).split('.').shift() + '.json';
 
 // 触发渲染模板
     $(document).on('renderTpl', function (event, rst) {

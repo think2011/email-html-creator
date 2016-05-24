@@ -14,7 +14,7 @@ module.exports = function (srcDir, jsonDir, dist) {
     return through.obj(function (file, enc, cb) {
         var content  = file.contents.toString(),
             fileName = file.relative.split('.')[0],
-            json     = path.join(process.cwd(), jsonDir, `${fileName}.json`),
+            json     = path.join(process.cwd(), `${jsonDir}/json`, `${fileName}.json`),
             jsonFile = JSON.parse(fs.readFileSync(json).toString());
 
         // 创建文件夹
@@ -23,8 +23,12 @@ module.exports = function (srcDir, jsonDir, dist) {
             srcCodeFileName = path.join(process.cwd(), srcDir, `${fileName}`);
 
         if (!fs.existsSync(newTplDir)) {
-            fs.mkdirSync(newTplDir);
-            fs.mkdirSync(newCodeDir);
+            try {
+                fs.mkdirSync(newTplDir);
+                fs.mkdirSync(newCodeDir);
+            } catch (err) {
+                throw new Error(`没有找到【${tplDir}】文件夹,请手动创建`)
+            }
         }
 
         // 拷贝源代码

@@ -30,9 +30,11 @@ gulp.task('server', function () {
 
 gulp.task('dev', ['dev:json', 'dev:sass'], function () {
     return gulp.src(`${paths.src}/*.html`)
+        .pipe(plugins.changed(paths.dist))
+
         .pipe(plugins.plumber())
 
-        .pipe(dev(paths.dist))
+        .pipe(dev(`${paths.dist}/json`))
 
         // 包裹
         .pipe(plugins.fileWrapper(`${paths.sources}/index.html`))
@@ -78,7 +80,7 @@ gulp.task('dev', ['dev:json', 'dev:sass'], function () {
 
         // decodeHTML
         .pipe(decodeHtml())
-        
+
         .pipe(gulp.dest(paths.dist))
 
         .on('end', browserSync.reload);
@@ -89,14 +91,14 @@ gulp.task('dev:sass', function () {
     return gulp.src(`${paths.src}/*.scss`)
         .pipe(plugins.plumber())
         .pipe(plugins.sass().on('error', plugins.sass.logError))
-        .pipe(gulp.dest(paths.dist));
+        .pipe(gulp.dest(`${paths.dist}/css`));
 });
 
 gulp.task('dev:json', function () {
     return gulp.src(`${paths.src}/*.json`)
         .pipe(plugins.plumber())
         .pipe(create())
-        .pipe(gulp.dest(paths.dist));
+        .pipe(gulp.dest(`${paths.dist}/json`));
 });
 
 
@@ -134,7 +136,7 @@ function insertLink() {
                     link     = document.createElement('link');
 
                 link.rel  = 'stylesheet';
-                link.href = `../dist/${fileName}.css`;
+                link.href = `../dist/css/${fileName}.css`;
                 document.querySelector('head').appendChild(link);
 
                 file.contents = new Buffer(jsdom.serializeDocument(window.document));
