@@ -56,9 +56,9 @@
  * 用法: {{encode str}}
  * 含义: 将str字符串使用encodeURIComponent转义
  *
- *  14. xIf TODO:目前仅支持满减模板使用
+ *  14. xIf
  *  用法: {{xIf lvalue operator rvalue}}
- *  含义: 支持字符串数组的判断
+ *  含义: 支持字符串,数组的判断
  *
  *  14. addOne
  *  含义: 数字加1,用于@index
@@ -66,12 +66,38 @@
  *  15. match
  *  用法: {{math A '+' B}}
  *  含义: 加减乘除等
+ *
+ *  16. discount
+ *  用法: {{discount 原价 折扣价}}
+ *  含义: 计算出折扣
+ *
+ *  17. retain
+ *  用法: {{retain 保留数 2}}
+ *  含义: 保留小数到几位
  **/
 
 if (typeof require !== 'undefined') {
     var Handlebars = require('handlebars')
 }
 
+// 得到折扣
+Handlebars.registerHelper('discount', function (price, promoPrice, retain, options) {
+    if (arguments.length !== 4) {
+        throw new Error('helper "eq" needs 4 arguments');
+    }
+
+    return ((+promoPrice / +price) * 10).toFixed(2)
+});
+
+
+// 保留小数到几位
+Handlebars.registerHelper('retain', function (num, retain, options) {
+    if (arguments.length !== 3) {
+        throw new Error('helper "eq" needs 2 arguments');
+    }
+
+    return retainFn(...arguments)
+});
 
 // 比较两个变量是否相等
 Handlebars.registerHelper('eq', function (left, right, options) {
@@ -606,3 +632,22 @@ Handlebars.registerHelper('xIf', function (lvalue, operator, rvalue, options) {
         return options.inverse(this);
     }
 });
+
+
+/**
+ * 保留小数到几位
+ * @param num
+ * @param retain
+ * @returns {number}
+ */
+function retainFn(num, retain) {
+    let splitNum = ('' + num).split('.')
+    let integer  = splitNum[0]
+    let decimals = splitNum[1]
+
+    if (decimals) {
+        return +(`${integer}.${decimals.substr(0, retain)}`)
+    } else {
+        return +integer
+    }
+}
