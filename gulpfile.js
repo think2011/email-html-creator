@@ -30,8 +30,6 @@ gulp.task('server', function () {
 
 gulp.task('dev', ['dev:json', 'dev:sass'], function () {
     return gulp.src(`${paths.src}/*.html`)
-        .pipe(plugins.changed(paths.dist))
-
         .pipe(plugins.plumber())
 
         .pipe(dev(`${paths.dist}/json`))
