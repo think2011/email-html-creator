@@ -1,0 +1,113 @@
+<table class="container">
+    <tr>
+        <td style="
+        width: 150px;
+        vertical-align: middle;
+        " class="text-center">
+            <img src="https://img.alicdn.com/imgextra/i1/92779311/TB2ck_DqXXXXXXwXXXXXXXXXXXX-92779311.png" alt="">
+        </td>
+
+        <td style="
+        padding: 8px;
+        ">
+            <div class="m-b-5">
+            <span class="b m-r-8"
+                  style="
+            font-size: 18px;
+            color: #E33C3A;
+            ">
+                {{tpl.title}}
+            </span>
+
+            <span class="text-muted">
+                活动日期:
+                {{tpl.startTime}}
+                --
+                {{tpl.endTime}}
+            </span>
+            </div>
+
+            <div class="divide1"></div>
+
+            <ul>
+                {{#each items}}
+                    <li class="m-b-5">
+                        <div style="float: left" class="m-r-5">
+                                <span class="text-muted f-s-12"
+                                      style="
+                                  width: 15px;
+                                  height: 15px;
+                                  line-height: 15px;
+                                  display: inline-block;
+                                  text-align: center;
+                                  background: #E11E1B;
+                                  color:#fff;
+                                  border-radius: 50%;">
+                                    {{retain (math @index '+' 1) 0}}
+                                </span>
+                        </div>
+
+                        <div style="overflow: hidden">
+                            {{#if price}}
+                                {{#xIf orderType "===" "单品"}}
+                                    单品买满
+                                {{else}}
+                                    单笔订单买满
+                                {{/xIf}}
+
+                                <span class="color-primary-color">
+                                    {{price}}
+                                </span>
+                                {{price_unit}},
+                            {{/if}}
+
+                            {{#if price_reduce}}
+                                {{#xIf price_reduce_unit "===" "元"}}
+                                    立减
+                                {{else}}
+                                    立折
+                                {{/xIf}}
+
+                                <span class="color-primary-color">{{price_reduce}}</span>
+                                {{price_reduce_unit}};
+                            {{/if}}
+
+                            {{#if express}}
+                                {{#decodeExpress express}}
+                                    <span class="color-primary-color">免邮费</span>
+                                    <span class="text-muted">({{@content}})</span>
+                                    ;
+                                {{/decodeExpress}}
+                            {{/if}}
+
+                            {{#if title}}
+                                送
+                                <a class="color-primary-color"
+                                   style="text-decoration: underline"
+                                   href="{{url}}" target="_blank">{{title}}</a>;
+                            {{/if}}
+
+                            {{#if noCeiling}}
+                                {{noCeiling}}
+                            {{/if}}
+                        </div>
+                    </li>
+                {{/each}}
+
+                {{#if tpl.remark}}
+                    <li>
+                        <div style="float: left">
+                             <span style="
+                                  color: #E01E1D;
+                                  font-size: 18px;">＊</span>
+                        </div>
+                        <div style="overflow: hidden;line-height: 20px;">
+
+                            <span>{{{tpl.remark}}}</span>
+                        </div>
+                    </li>
+                {{/if}}
+            </ul>
+        </td>
+    </tr>
+</table>
