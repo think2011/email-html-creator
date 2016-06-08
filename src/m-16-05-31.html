@@ -1,0 +1,38 @@
+<div class="tpl-container">
+    <div class="banner">
+        <img src="https://img.alicdn.com/imgextra/i1/92779311/TB24FttpVXXXXcqXpXXXXXXXXXX-92779311.jpg"/>
+    </div>
+
+    {{#each items}}
+        <ul class="items">
+            {{#each this}}
+                <li class="item">
+                    <a class="link" href="{{url}}" target="_blank">
+                        <img src="{{picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg" alt="">
+                    </a>
+                    <div class="desc">
+                        <div class="title">
+                            <h4 class="title-text-h"  style="font-weight: normal"><a href="{{url}}" target="_blank">{{title}}</a></h4>
+                        </div>
+                        <div class="box">
+                            <a href="{{url}}" target="_blank">
+                                <ul class="priceAll">
+                                    <li >
+                                        <div class="price" style="font-weight: normal;">原价:{{price}}</div>
+                                        <ul class="promoPrice">
+                                            <li>特卖价</li><li class="promoPrice-yuan">￥</li><li class="promoPrice-font-size">{{toFixed promoPrice 0}}.</li><li class="promoPrice-font-b">{{toFixed promoPrice 1}}</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </a>
+                            <a class="btn" href="{{url}}" target="_blank">抢</a>
+                        </div>
+                    </div>
+                </li>
+            {{/each}}
+
+        </ul>
+    {{/each}}
+</div>
+
+

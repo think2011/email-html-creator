@@ -1,0 +1,127 @@
+@import "../sources/m-common";
+
+.tpl-container {
+  width: px2rem(750);
+  font-family: "微软雅黑";
+
+  .banner {
+    width: px2rem(750);
+    height: px2rem(320);
+    img {
+      width: px2rem(750);
+      height: px2rem(320);
+    }
+  }
+
+  .items {
+    width: px2rem(750);
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    .item {
+      width: px2rem(350);
+      color: #000;
+      margin: px2rem(8);
+      border: px2rem(5) solid #2e9e7b;
+
+      img {
+        width: px2rem(350);
+        height: px2rem(350);
+        vertical-align: top;
+      }
+      .link {
+        width: px2rem(350);
+        height: px2rem(330);
+
+      }
+      .desc {
+        width: px2rem(350);
+        overflow: hidden;
+        background: #2e9e7b;
+
+        .title {
+          height: px2rem(38);
+          line-height: px2rem(38);
+          padding-left: px2rem(5);
+          font-size: px2rem(26);
+          white-space: nowrap;
+          overflow: hidden;
+          text-align: left;
+          background: #262626;
+          a {
+            color: #fff;
+          }
+          .title-text-h {
+          }
+        }
+        .box {
+          display: flex;
+          justify-content: space-between;
+          vertical-align: bottom;
+          margin-top: px2rem(-20);
+          .priceAll {
+            width: px2rem(222);
+            height: px2rem(70);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 0 px2rem(3);
+            margin-top: px2rem(30);
+          }
+          .promoPrice {
+            width: px2rem(222);
+            height: px2rem(38);
+            line-height: px2rem(38);
+            font-size: px2rem(24);
+            font-weight: bold;
+            color: #f4e034;
+            letter-spacing: -1px;
+            li {
+              display: inline-block;
+
+            }
+            .promoPrice-title {
+            }
+            .promoPrice-font-b {
+              font-size: px2rem(28);
+            }
+            .promoPrice-yuan {
+              color: #f4e034;
+              font-size: px2rem(22);
+              font-weight: normal;
+              line-height: px2rem(26);
+            }
+            .promoPrice-font-size {
+              font-size: px2rem(40);
+              text-shadow: #2a7637 px2rem(2) px2rem(3) 0;
+            }
+          }
+
+          .price {
+            height: px2rem(25);
+            line-height: px2rem(25);
+            font-size: px2rem(20);
+            text-decoration: line-through;
+            color: #fff;
+            margin-top: px2rem(2);
+          }
+          .btn {
+            width: px2rem(123);
+            height: px2rem(98);
+            font-size: px2rem(40);
+            font-weight: bold;
+            line-height: px2rem(98);
+            margin-right: px2rem(2);
+            padding-top: px2rem(7);
+            background: url(https://img.alicdn.com/imgextra/i3/92779311/TB2S2FXpVXXXXcMXpXXXXXXXXXX-92779311.png) no-repeat 0 0;
+            background-size: px2rem(123) px2rem(98);
+            color: #f4e034;
+            text-align: center;
+          }
+        }
+
+      }
+
+    }
+
+  }
+}

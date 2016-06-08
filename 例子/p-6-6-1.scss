@@ -1,0 +1,38 @@
+@import "../sources/common";
+
+$color-primary: #DA2E0A;
+
+body {
+  line-height: 24px;
+}
+
+.color-primary-color {
+  color: $color-primary;
+}
+
+.color-primary-bg {
+  background: $color-primary;
+}
+
+.divide {
+  height: 1px;
+  border-bottom: 1px dashed #ccc;
+  margin-bottom: 10px;
+}
+
+ul, li {
+  list-style: none;
+}
+
+.container {
+  font-size: 14px;
+  border: 1px solid #E1E1E1;
+}
+
+.b {
+  font-weight: bold;
+}
+
+.text-muted {
+  color: #9c9d9d;
+}

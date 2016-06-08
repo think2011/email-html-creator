@@ -13,7 +13,7 @@
       "type": "string",
       "fn": "text",
       "desc": "标题",
-      "default": "满减包邮"
+      "default": "卖家促销"
     },
     "startTime": {
       "type": "string",

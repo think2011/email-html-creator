@@ -10,10 +10,6 @@
   },
   "表单定义": {
     "title": {
-      "type": "string",
-      "fn": "text",
-      "desc": "标题",
-      "default": "周末促销"
     }
   },
   "宝贝定义": {
@@ -21,13 +17,7 @@
       "type": "string",
       "fn": "text",
       "desc": "标题",
-      "default": "SHERRY小玉酱2015秋冬麻花流苏披肩围巾女士百搭款围脖秋"
-    },
-    "label": {
-      "type": "string",
-      "fn": "text",
-      "desc": "标签",
-      "default": "促销"
+      "default": "嘉兴粽子招牌鲜肉粽嘉兴粽子"
     },
     "price": {
       "type": "string",
@@ -35,23 +25,23 @@
       "desc": "原价",
       "default": 188.00
     },
-    "priceTitle": {
-      "type": "string",
-      "fn": "text",
-      "desc": "价格标签",
-      "default": "特惠价"
-    },
     "promoPrice": {
       "type": "string",
       "fn": "text",
       "desc": "促销价",
       "default": 166.00
     },
-    "soldQuantity": {
+    "promoPrice_a": {
       "type": "string",
       "fn": "text",
-      "desc": "销量",
-      "default": 999
+      "desc": "促销价_整数部分",
+      "default": "166"
+    },
+    "promoPrice_b": {
+      "type": "string",
+      "fn": "text",
+      "desc": "促销价_小数部分",
+      "default": "00"
     }
   }
 }
