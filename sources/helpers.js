@@ -81,6 +81,14 @@
  * price = 10010.20
  * {{toFixed price 0}} => 10010
  * {{toFixed price 1}} => 20
+ *
+ *  19. getGoodsUrl
+ *  用法: getGoodsUrl item
+ *  含义: 生成宝贝链接
+ *
+ *  20. getFavoriteUrl
+ *  用法: getFavoriteUrl item
+ *  含义: 生成宝贝收藏链接
  **/
 
 if (typeof require !== 'undefined') {
@@ -659,3 +667,11 @@ function retainFn(num, retain) {
         return +integer
     }
 }
+
+Handlebars.registerHelper("getGoodsUrl", function (item, options) {
+    return `http://item.taobao.com/item.htm?id=${item.itemId}`
+});
+
+Handlebars.registerHelper("getFavoriteUrl", function (item, options) {
+    return `https://favorite.taobao.com/popup/add_collection.htm?itemtype=1&scjjc=1&id=${item.itemId}`
+});
