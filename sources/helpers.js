@@ -668,10 +668,10 @@ function retainFn(num, retain) {
     }
 }
 
-Handlebars.registerHelper("getGoodsUrl", function (item, options) {
-    return `http://item.taobao.com/item.htm?id=${item.itemId}`
+Handlebars.registerHelper("getGoodsUrl", function (id, options) {
+    return `http://item.taobao.com/item.htm?id=${id}`
 });
 
-Handlebars.registerHelper("getFavoriteUrl", function (item, options) {
-    return `https://favorite.taobao.com/popup/add_collection.htm?itemtype=1&scjjc=1&id=${item.itemId}`
+Handlebars.registerHelper("getFavoriteUrl", function (id, options) {
+    return `https://favorite.taobao.com/popup/add_collection.htm?itemtype=1&scjjc=1&id=${id}`
 });

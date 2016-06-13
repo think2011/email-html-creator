@@ -41,6 +41,18 @@
       "desc": "标题",
       "default": "SHERRY小玉酱2015秋冬麻花流苏披肩围巾女士百搭款围脖秋"
     },
+    "itemId": {
+      "type": "string",
+      "fn": "text",
+      "desc": "链接",
+      "default": "1231343"
+    },
+    "itemUrl": {
+      "type": "string",
+      "fn": "text",
+      "desc": "链接",
+      "default": "http://taobao.com"
+    },
     "orderType": {
       "type": "string",
       "fn": "text",
