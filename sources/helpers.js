@@ -91,7 +91,7 @@
  *  含义: 生成宝贝收藏链接
  **/
 
-if (typeof require !== 'undefined') {
+if (typeof require !== 'undefined' && typeof global !== 'undefined') {
     var Handlebars = require('handlebars')
 }
 
