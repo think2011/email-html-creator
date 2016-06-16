@@ -61,7 +61,7 @@ module.exports = function (srcDir, jsonDir, dist) {
             json.itemDefaultVal = jsonTpl.item;
             json.itemForm       = jsonTpl.itemForm;
 
-            delete  json.tplform.itemId
+            delete  json.itemDefaultVal.itemId
 
             // 创建json
             fs.writeFileSync(newJsonFile, JSON.stringify(json, null, 2));
