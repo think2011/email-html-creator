@@ -59,6 +59,12 @@
       "desc": "原价",
       "default": 188.00
     },
+    "total": {
+      "type": "string",
+      "fn": "text",
+      "desc": "件数",
+      "default": 1
+    },
     "price_unit": {
       "type": "string",
       "fn": "text",

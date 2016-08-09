@@ -6,25 +6,23 @@ body {
   line-height: 24px;
 }
 
+img {
+  width: 100px;
+}
+
 .color-primary-color {
   color: $color-primary;
+  font-size: 18px;
 }
 
 .color-primary-bg {
   background: $color-primary;
 }
 
-.divide1{
-  height: 1px;
-  border-bottom: 1px dashed #ccc;
-  margin-top: 2px;
-  margin-bottom: 10px;
-}
 .divide {
   height: 1px;
   border-bottom: 1px dashed #ccc;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 ul, li {
@@ -33,7 +31,6 @@ ul, li {
 
 .container {
   font-size: 14px;
-  border: 1px solid #E1E1E1;
 }
 
 .b {
