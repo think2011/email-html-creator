@@ -1,0 +1,99 @@
+@import "../sources/common";
+
+
+#tpl-750 .hot,#tpl-790 .hot{
+  font-size: 50px;
+  height: 50px;
+  line-height:50px;
+}
+#tpl-950 .hot,#tpl-990 .hot{
+  font-size: 76px;
+  height: 76px;
+  line-height:76px;
+}
+
+#tpl-750 .title,#tpl-790 .title{
+  font-size: 18px;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 4px;
+}
+#tpl-950 .title,#tpl-990 .title{
+  font-size: 26px;
+  margin-left: 8px;
+  height: 28px;
+  line-height: 20px;
+  margin-top: 8px;
+}
+
+#tpl-750 .subTitle,#tpl-790 .subTitle{
+  font-size: 12px;
+  height: 14px;
+  line-height: 14px;
+  margin-top: 4px;
+}
+#tpl-950 .subTitle,#tpl-990 .subTitle{
+  font-size: 18px;
+  margin-left: 8px;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 2px;
+}
+
+#tpl-750 .more,#tpl-790 .more{
+  height: 25px;
+  font-size: 12px;
+  a{
+    margin-top: 25px;
+  }
+}
+#tpl-950 .more,#tpl-990 .more{
+  height: 36px;
+  font-size: 14px;
+  a{
+    margin-top: 40px;
+  }
+}
+
+#tpl-750 .content-h ,#tpl-790 .content-h{
+ height: 25px;
+  padding:5px 0;
+}
+#tpl-950 .content-h,#tpl-990 .content-h{
+  height: 30px;
+  padding: 7px 0;
+}
+
+#tpl-750 .promoPrice-font-size,#tpl-790 .promoPrice-font-size{
+  font-size: 16px;
+  height: 16px;
+  line-height: 16px;
+}
+#tpl-950 .promoPrice-font-size,#tpl-990 .promoPrice-font-size{
+  font-size:20px;
+  height: 20px;
+  line-height: 20px;
+}
+
+#tpl-750 .promoPrice{
+  width:102px;
+}
+#tpl-790 .promoPrice{
+  width:112px;
+}
+#tpl-950 .promoPrice{
+  width:152px;
+}
+#tpl-990 .promoPrice{
+  width:162px;
+}
+
+#tpl-750.btn,#tpl-790.btn,#tpl-950.btn,#tpl-990.btn{
+  width: 78px;
+}
+
+
+
+
+
+

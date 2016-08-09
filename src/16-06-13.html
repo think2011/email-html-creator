@@ -1,0 +1,62 @@
+<table style="margin-bottom: 12px;">
+    <tr style="border-bottom: 3px solid #{{tpl.color}};overflow: hidden;">
+
+        <td width="10%" >
+            <div class="hot" style="font-family:'Agency FB';font-weight: bold;color: #{{tpl.color}};">HOT</div>
+        </td>
+        <td width="80%">
+            <div class="title" style="font-weight: bold;color: #{{tpl.color}};">{{tpl.title}}</div>
+            <div class="subTitle" style="text-transform: uppercase;font-family:'Agency FB';color: #999;">{{tpl.subTitle}}</div>
+        </td>
+        <td width="10%" style="text-align: right;" class="more">
+            <a href="{{moreUrl}}" target="_blank" style="color: #666;">查看更多>></a>
+        </td>
+    </tr>
+    <tr >
+        <td colspan="3" style="border-bottom: 1px solid #{{tpl.color}};width: 100%;height: 1px;padding-top:3px;"></td>
+    </tr>
+</table>
+
+<table >
+    {{#each items}}
+        <tr >
+            <td width="6"></td>
+            {{#each this}}
+                <td width="{{size._picSize}}"   background="{{picUrl}}_{{size._picSize}}x{{size._picSize}}.jpg"
+                    style=";background-repeat:no-repeat;background-position:50% 50%;display: inline-block;border:1px solid #dedede;">
+                    <a href="{{getGoodsUrl this.itemId}}" target="_blank" style="color:#fff; width:{{size._picSize}}px;  height:{{size._picSize}}px;display:inline-block;">
+
+                    </a>
+                </td>
+                <td class="content-h" width="{{size._picSize}}"  style="display: inline-block;background: #fff;border: 1px solid #fff;">
+                    <table>
+                        <tr >
+                         <td>
+                             <div style="width:{{size._picSize}}px;overflow: hidden;" >
+                                 <a class="promoPrice" href="{{url}}" target="_blank" style="color: #666;white-space: nowrap;overflow: hidden;">
+                                     <span style="font-size: 12px;">惊喜价:</span><span class="promoPrice-font-size" style="letter-spacing: -1px;font-weight: bold;color:#{{../../tpl.color}};padding-right: 2px;">{{promoPrice}}</span>
+                                 </a>
+                                 <span class="btn" style="font-size: 12px;display: inline-block;">
+                                    <a href="{{getFavoriteUrl this.itemId}}" target="_blank" style="background: #{{../../tpl.color}};height: 12px;line-height: 12px;padding:4px;color: #fff;display: inline-block;">
+                                        收藏
+                                    </a>
+                                     <a href="{{getGoodsUrl this.itemId}}" target="_blank"  style="background: #{{../../tpl.color}};height: 12px;line-height: 12px;padding:4px;color: #fff;display: inline-block;">
+                                        购买
+                                     </a>
+                                 </span>
+                             </div>
+                         </td>
+                        </tr>
+
+
+                    </table>
+                </td>
+                {{#noteq @index 3}}
+                    <td width="6"></td>
+                {{/noteq}}
+            {{/each}}
+            <td width="6"></td>
+        </tr>
+    {{/each}}
+    <tr height="10"></tr>
+</table>

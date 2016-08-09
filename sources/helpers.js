@@ -541,7 +541,7 @@ Handlebars.registerHelper('decodeExpress', function (str, options) {
         },
         getInland: function () {
             if (str === this.inland) {
-                options.data.content = '全国免邮（不免邮地区：港澳台，西藏，新疆，海外）'
+                options.data.content = '不含: 港澳台，西藏，新疆，海外'
 
                 return str
             } else {
@@ -550,13 +550,13 @@ Handlebars.registerHelper('decodeExpress', function (str, options) {
         },
         getHalf  : function () {
             if (str.length < this.all.length / 2) {
-                options.data.content = `免邮地区：${str}`
+                options.data.content = `仅限: ${str}`
             } else {
                 var input = str.split(',')
                 var all   = this.all.split(',')
                 var _str  = all.filter((v) => input.indexOf(v) === -1).join(',')
 
-                options.data.content = `不免邮地区：${_str}`
+                options.data.content = `不含: ${_str}`
             }
 
             return str
