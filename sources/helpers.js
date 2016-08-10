@@ -496,7 +496,7 @@ Handlebars.registerHelper('decodeExpress', function (str, options) {
         },
         {
             "id"  : 700000,
-            "name": "常用不免邮地区"
+            "name": "其他"
         },
         {
             "id"      : 710000,

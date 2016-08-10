@@ -5,10 +5,16 @@
   @return $px*320/$designWidth/20 + rem;
 }
 
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .container {
   overflow: hidden;
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
   font-family: "Microsoft YaHei";
   margin: 0 auto;
 }
