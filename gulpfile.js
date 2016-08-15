@@ -190,6 +190,9 @@ function recoveryVarStyle() {
             // 清空style中的background
             td = td.replace(/url\(.*?\)/g, '');
 
+            // 修复带双引号的情况
+            td = td.replace(/"'|'"/g, '"');
+
             return td;
         }
     })
